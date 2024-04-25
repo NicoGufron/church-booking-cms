@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Pendaftaran Akun</title>
+    <title>Pendaftaran Akun - HKBP Ressort Jatimurni</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/500e5d004e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -12,30 +12,78 @@
     <link rel="stylesheet" href="style/style-form.css">
 </head>
 <?php 
-    $result = "";
-    include("navbar.html");
-?>
+require_once("connect.php");
+session_start();
+$result = "";
+include("navbar.html");
 
+
+if (isset($_SESSION['username'])) {
+    header("");
+} else {
+    if ($_POST) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $password2 = $_POST['password2'];
+
+        if ($username == "") {
+            $result = "<div class='alert alert-danger' role='alert'>
+                Mohon untuk memasukkan username!
+            </div>";
+        } else if ($password !== $password2) {
+            $result = "<div class='alert alert-danger' role='alert'>
+                Kata sandi tidak sama!
+            </div>";
+        } else if ($password == "" || $password2 == "") {
+            $result = "<div class='alert alert-danger' role='alert'>
+                Kata sandi harus diisi!
+            </div>";   
+        } else {
+            //sektor 0 berarti admin
+            //sektor 1 - 5 diatur sama admin
+            //otomatis atur sektor jadi 6, anggapannya belum di assign admin
+            $sql = "INSERT INTO accounts (id, username, password, sektor) values (0, '$username', '$password', 6)";
+            
+            $q = mysqli_query($conn, $sql);
+
+            //set sesi
+            $_SESSION['username'] = $username;
+
+            if ($q == true) {
+                $result = "<div class='alert alert-success' role='alert'>
+                    Pendaftaran akun berhasil!
+                </div>";
+            } else {
+                $result = "<div class='alert alert-danger' role='alert'>
+                    Mohon maaf, terjadi kesalahan. Mohon coba lagi!
+                </div>";   
+            }
+
+        }
+    }
+}
+
+?>
 
 <body>
     <div class="container-fluid" style="display: flex; flex-direction: column; align-items: center">
         <div class="signup-section">
-            <?php echo $result ?>
             <div class="header">
                 <h3 style="text-align: left; font-weight: bold";>Daftar Akun</h3>
                 <p>Mari daftarkan akun anda untuk mengakses fitur lebih banyak!</p>
             </div>
-            <p></p>
+            <br>
+            <?php echo $result ?>
             <form class="form-group signup-form" method="post">
                 <label style="padding-top: 0%;">Username</label>
                 <input type="text" name="username">
                 <label>Kata Sandi</label>
-                <input type="password" name="password">
+                <input type="password" name="password" id="password">
                 <label>Konfirmasi Kata Sandi</label>
-                <input type="password" name="password2">
+                <input type="password" name="password2" id="password2">
                 
                 <button class="btn main-button">Daftar</button>
-                <p style="text-align: center; padding-top: 25px">Sudah mempunyai akun? <a href="login.php"><u>Masuk disini</u></a></p>
+                <p style="text-align: center; padding-top: 25px">Sudah mempunyai akun? <a href="login.php"><u><b>Masuk disini</b></u></a></p>
             </form>
         </div>
     </div>

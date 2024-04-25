@@ -4,6 +4,12 @@ body {
     background-color: white;
 }
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+/* 
 .container {
     display: flex;
     flex-direction: column;
@@ -11,10 +17,76 @@ body {
     justify-content: center;
     height: 100vh;
     color: white
-}
+} */
 
 .container-fluid {
     padding: 0;
+}
+
+footer {
+    padding: 60px 0px 60px 0px;
+    border-top: 1px solid black;
+    background-color: whitesmoke;
+}
+
+footer .about-veno .logo {
+    margin-bottom: 40px;
+}
+
+footer .about-veno ul li a {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    text-align: center;
+    line-height: 32px;
+    background-color: #183153;
+    border-radius: 50%;
+    font-size: 15px;
+    color: #fff;
+    margin-right: 3px;
+    transition: all 0.5s;
+}
+
+.footer .useful-links {
+    align-items: start;
+}
+
+footer .useful-links ul li {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+footer .useful-links ul li a {
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+footer .useful-links ul li i {
+    font-size: 6px;
+    position: relative;
+    top: -3px;
+    margin-right: 8px;
+}
+
+footer .contact-info p {
+    margin-bottom: 25px;
+}
+
+footer .contact-info ul li {
+    margin: 10px 0px;
+}
+
+footer .contact-info .contact-phones {
+    list-style: disc;
+    margin-left: 40px;
+    font-size: 14px;
+}
+
+footer .contact-info ul li span {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    width: 80px;
+    display: inline-block;
 }
 
 .login-section {
@@ -59,11 +131,40 @@ input {
     border-radius: 10px;
     height: 50px;
     width: 35%;
+    text-align: center;
     background-color: #FFD43B;
     font-weight: bold;
     color: black;
     border: 2.5px solid black;
     box-shadow: 0px 4px black;    
+}
+
+.more-button {
+    align-self: center;
+    height: 50px;
+    font-size: 14px;
+    width: 150px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+    transition: 0.25s all;
+}
+
+.more-button:hover {
+    background-color: #183153;
+    color: white;
+}
+
+.about-us {
+    padding-top: 10vh;
+    background-color: whitesmoke;
+}
+
+.image-church {
+    max-width: 640px;
+    border-radius: 10px;
+    border: 0.5px solid black;
 }
 
 .main-button:hover {
@@ -103,31 +204,6 @@ input {
     background-color: whitesmoke;
 }
 
-.fourth-section {
-    display: flex;
-    flex-direction: row;
-    background-color: #FFD43B;
-    color: #F2ECBE;
-    justify-content: space-evenly;
-}
-
-.fourth-col {
-    margin: 2.5%;
-    padding: 3% 5% 0% 5%;
-    background-color: #183153;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    color: #FFD43B;
-}
-
-.fourth-col-text {
-    color: #FFD43B;
-    margin-top: 5%;
-}
 
 .subtitle {
     font-weight: 600;
@@ -171,11 +247,30 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solcid #ddd;
     text-align: center;
     padding: 8px;
 }
 
 .maps {
     align-self: center;
+}
+
+.about-church {
+    padding: 80px 0px 70px 0px;
+    font-size: 14px;
+}
+
+.carousel-inner .carousel-item img {
+    width: 100%;
+    height: 400px;
+    background-position: center center;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.request-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
