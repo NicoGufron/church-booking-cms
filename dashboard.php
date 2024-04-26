@@ -22,9 +22,46 @@ include("sidenav.php");
 <body>
     <div class="container-fluid">
         <section>
-            <div>
+            <div class="dashboard-section">
                 <h3>Selamat datang, <?php echo $_SESSION['username'] ?></h3>
-                <h5>Jadwal mendatang untuk minggu ini</h5>
+
+                <section>
+                    <div class="ibadah-section">
+                        <h4 class="title">Jadwal Kegiatan</h4>
+                        <p class="subtitle">Jadwal Ibadah Daring / Online 
+                        <table class="table table-striped table-hover .table-responsive">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Kegiatan</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Keterangan</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php
+
+                                $sektor = $_SESSION['sektor'];
+
+
+                                while ($row = mysqli_fetch_assoc($q)) {
+                                    $kegiatan = $row['kegiatan'];
+                                    $deskripsi = $row['deskripsi'];
+                                    $tanggalMulai = $row['tanggalMulai'];
+                                    $convertedTanggal = date('d/m/Y H:i', strtotime($tanggalMulai));
+                                    echo "<tr>
+                                        <td class='table-child'>$kegiatan</td>
+                                        <td class='table-child'>$convertedTanggal</td>
+                                        <td class='table-child'>$deskripsi</td>
+                                    </tr>";
+                                }
+
+                                ?>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </section>
             </div>
         </section>
     </div>

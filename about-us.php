@@ -76,7 +76,9 @@ include("navbar.html");
                 </div>
             </section>
         </div>
-
+        <?php
+            include("footer.php")
+        ?>
     </div>
 </body>
 

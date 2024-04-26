@@ -274,3 +274,34 @@ th, td {
     flex-direction: column;
     justify-content: flex-start;
 }
+
+.dashboard-section {
+    padding: 5% 2.5% 0% 2.5%;
+}
+
+.table-child {
+    /* max-width: 50%; */
+    text-align: left;
+}
+
+.table-child:nth-child(1) {
+    width: 20%;
+    text-align: center;
+}
+
+.table-child:nth-child(2) {
+    width: 20%;
+    text-align: center;
+}
+
+.ibadah-section {
+    padding: 2.5% 0%;
+}
+
+.sidenav-links {
+    font-weight: bold;
+}
+
+.sidenav a i {
+    padding-right: 20px;
+}

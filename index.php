@@ -52,7 +52,7 @@ include("navbar.html");
         </section>
         <section>
             <div class="second-section">
-                <h4 class="title">Jadwal Ibadah</h4>
+                <h4 class="title">Jadwal Ibadah Umum</h4>
                 <p class="subtitle">Jadwal Ibadah Daring / Online
                 <table class="table">
                     <tr>
@@ -98,62 +98,11 @@ include("navbar.html");
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.4961904600045!2d106.93415877499133!3d-6.32969439365987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6992e76c954885%3A0x2a74938e1af7e7e5!2sHKBP%20Ressort%20Jatimurni!5e0!3m2!1sen!2sid!4v1713943691465!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div> -->
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="about-veno">
-                            <div class="logo">
-                                <img src="assets/images/logo.jpg" alt="HKBP Jatimurni Logo" style="height: 120px; width: 120px">
-                            </div>
-                            <p>Lokasi: Jl. Raya Kampung Sawah, Gang Mantri Tiing No. 30, RT 007/RW 001, Jatimurni, Pondok Melati, Kota Bekasi, Jawa Barat 17415</p>
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="https://www.youtube.com/@hkbpjatimurni5820"><i class="fa fa-instagram"></i></a>
-                                    <a href="https://www.instagram.com/hkbpjatimurni_"><i class="fa fa-youtube"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="useful-links">
-                            <div class="footer-heading">
-                                <h4>Jelajah</h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <ul>
-                                        <li><a href="index.php"><i class="fa fa-stop"></i>Beranda</a></li>
-                                        <li><a href="about.html"><i class="fa fa-stop"></i>Tentang Kami</a></li>
-                                        <li><a href="team.html"><i class="fa fa-stop"></i>Kegiatan</a></li>
-                                        <li><a href="team.html"><i class="fa fa-stop"></i>Warta</a></li>
-                                        <li><a href="contact.html"><i class="fa fa-stop"></i>Pendaftaran</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="contact-info">
-                            <div class="footer-heading">
-                                <h4>Kontak Informasi</h4>
-                            </div>
-                            <ul>
-                                <li><i class="fa fa-phone" style="padding-right: 10px"></i>Telepon:</li>
-                                <ul>
-                                    <li class="contact-phones">Parhalado: <a href="#">085891683833</a> (St. S. Malau)</li>
-                                    <li class="contact-phones">Sekolah Minggu: <a href="#">085694870463</a> (Brigitta Malau)</li>
-                                    <li class="contact-phones">Naposo: <a href="#">0811550053</a> (Gaby Silalahi)</li>
-                                    <li class="contact-phones">Remaja: <a href="#">082123202987</a> (Racheal Silaban)</li>
-                                </ul>
-                                <li><i class="fa fa-envelope" style="padding-right: 10px"></i>Email: <a href="#">hkbpjtm@gmail.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        
+        <?php
+        include("footer.php");
 
+        ?>
 
     </div>
 </body>

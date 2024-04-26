@@ -34,28 +34,40 @@ $row = mysqli_fetch_assoc($q);
                 top: 0;
                 left: 0;
                 background-color: whitesmoke;
+                border-right: 1px solid black;
                 overflow-x: hidden;
-                padding-top: 60px;
+                padding-top: 80px;
                 transition: 0.5s;
             }
-            .sidenav a{
-                padding: 8px 8px 8px 32px;
+
+            .sidenav a:nth-child(1) {
+                margin-top: 20px;
+            }
+            .sidenav a {
+                padding: 7.5% 7.5%;
                 text-decoration: none;
                 font-size: 16px;
                 color: #000;
                 display: block;
                 transition: 0.3s;
             }
-            .sidenav a:hover{
+            .sidenav a:hover {
+                background-color: #cccccc;
                 font-weight: bold;
                 color: black;
             }
             .sidenav .closebtn {
+                background-color: transparent;
                 position: absolute;
                 top: 0;
                 right: 25px;
                 font-size:36px;
                 margin-left:50px;
+            }
+
+            .sidenav .closebtn:hover {
+                background-color: transparent;
+                color: #ff0000;
             }
 
             .navbar-brand {
@@ -71,12 +83,11 @@ $row = mysqli_fetch_assoc($q);
                 </button> -->
         </nav>
         <div id ="sidenav" class="sidenav">
-            <?php
-            ?> 
+            <?php echo $_SESSION['sektor'] != 0 ? "<a href='account.php' class='sidenav-links'><i class='fa-solid fa-user'></i>Atur Informasi Pribadi</a>" : "" ?> 
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="request-activity.php" class="active">Pengajuan Kegiatan</a>
-            <a href="" class="">Pengaturan Jadwal Ibadah</a>
-            <a href="logout.php">Keluar</a>
+            <a href="request-activity.php" class="sidenav-links active"><i class="fa-solid fa-file-lines"></i>Pengajuan Kegiatan</a>
+            <?php echo $_SESSION['sektor'] == 0 ? "<a href='dashboard.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Pengaturan Jadwal Ibadah</a>" : "<a href='dashboard.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Lihat Jadwal Ibadah</a>"; ?> 
+            <a href="logout.php" class="sidenav-links"><i class="fa-solid fa-right-from-bracket" style="color: #ff0000"></i>Keluar</a>
         </div>
     </body>
     <script>
