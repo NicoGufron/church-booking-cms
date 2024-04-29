@@ -40,7 +40,6 @@
                     $_SESSION["id"] = $row['id'];
                     $_SESSION["sektor"] = $row['sektor'];
                 }
-
                 $_SESSION['username'] = $username;
 
                 $accountFound = mysqli_num_rows($q);

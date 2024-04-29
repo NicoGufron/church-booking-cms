@@ -18,19 +18,13 @@ ul, p {
 } */
 
 .signup-section{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-content: center;
     border-radius: 10px;
-    padding: 5% 5% 2.5% 5%;
-    margin: 5%;
-    width: 35%;
+    padding: 5%;
+    width: 50%;
+    margin-top: 5vh;
     border: 2.5px solid black;
     box-shadow: 0px 5px black;    
     background-color: whitesmoke;
-    color: #183153;
-    max-width: 50%;
 }
 
 h4 {
@@ -98,12 +92,13 @@ h4 {
     align-items: center;
     justify-content: center;
     padding: 80px 0px 70px 0px;
+    width: 100%;
 }
 
 label {
     font-weight: bold;
     padding-bottom: 2%;
-    padding-top: 2%;
+    padding-top: 3%;
 }
 
 .label-date {

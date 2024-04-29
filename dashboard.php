@@ -27,8 +27,8 @@ include("sidenav.php");
 
                 <section>
                     <div class="ibadah-section">
-                        <h4 class="title">Jadwal Kegiatan</h4>
-                        <p class="subtitle">Jadwal Ibadah Daring / Online 
+                        <h4 class="title">Jadwal Kegiatan Mendatang</h4>
+                        <p class="subtitle">Jadwal Ibadah Daring / Online </p>
                         <table class="table table-striped table-hover .table-responsive">
                             <thead class="thead-light">
                                 <tr>
@@ -42,13 +42,14 @@ include("sidenav.php");
                                 <?php
 
                                 $sektor = $_SESSION['sektor'];
-
+                                $sql = "SELECT * FROM activities WHERE sektor = $sektor order by tanggal desc";
+                                $q = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($q)) {
                                     $kegiatan = $row['kegiatan'];
                                     $deskripsi = $row['deskripsi'];
-                                    $tanggalMulai = $row['tanggalMulai'];
-                                    $convertedTanggal = date('d/m/Y H:i', strtotime($tanggalMulai));
+                                    $tanggalMulai = $row['tanggal'];
+                                    $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
                                     echo "<tr>
                                         <td class='table-child'>$kegiatan</td>
                                         <td class='table-child'>$convertedTanggal</td>

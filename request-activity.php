@@ -22,14 +22,14 @@ include("sidenav.php");
 </head>
 
 <?php
-// $result = "<div class='notice'>
-//     <i class='fa-solid fa-circle-info' style='padding-right: 10px;padding-top: 5px'></i>
-//     <p>Pengajuan akan diberikan kepada admin, lalu akan diproses. Tekan tombol '<b>Ajukan Formulir</b>' apabila sudah mengisi semua informasi yang dibutuhkan.</p>
-//     </div>";
-$result = "<div class='alert alert-success' role='alert'>
-            <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
-            Pengajuan kegiatan telah dikirim!
-        </div>";
+$result = "<div class='notice'>
+    <i class='fa-solid fa-circle-info' style='padding-right: 10px;padding-top: 5px'></i>
+    <p>Pengajuan akan diberikan kepada admin, lalu akan diproses. Tekan tombol '<b>Ajukan Formulir</b>' apabila sudah mengisi semua informasi yang dibutuhkan.</p>
+    </div>";
+// $result = "<div class='alert alert-danger' role='alert'>
+//             <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
+//             Gagal mengirim pengajuan kegiatan, mohon coba lagi!
+//         </div>";
 
 if ($_POST) {
     $name = $_POST['nama'];
@@ -46,13 +46,15 @@ if ($_POST) {
 
     if ($name != "" && $phone != "" && $startDate != "" && $endDate != "" && $building != "" && $deskripsi != "") {   
         $sql = "INSERT INTO request_activities (id, nama_peminta, nomor_telpon, sektor, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$name', '$phone', $sektor, '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
-        $result = "<div class='notice'><div class='alert alert-success' role='alert'>
-            <i class='fa-solid fa-circle-info' style='padding-right: 10px;padding-top: 5px'></i>
-            <p>Pengajuan kegiatan telah dikirim!</p>
-            </div>
+        $result = "<div class='alert alert-success' role='alert'>
+            <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
+            Pengajuan kegiatan telah dikirim!
         </div>";
     } else {
-
+        $result = "<div class='alert alert-danger' role='alert'>
+            <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
+            Gagal mengirim pengajuan kegiatan, mohon coba lagi!
+        </div>";
     }
 
     $q = mysqli_query($conn, $sql);

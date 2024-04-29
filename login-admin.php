@@ -13,10 +13,9 @@
 
 <?php
 require_once("connect.php");
-session_start();
 $result = "";
+session_start();
 if (isset($_SESSION["username"])) {
-    //pindah ke halaman dashboard
     header("dashboard-admin.php");
 } else {
     if ($_POST) {
@@ -26,20 +25,25 @@ if (isset($_SESSION["username"])) {
         $sql = "SELECT * FROM accounts where username = '$username' and password = '$password'";
         $q = mysqli_query($conn, $sql);
 
+        while ($row = mysqli_fetch_assoc($q)) {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['sektor'] = $row['sektor'];
+        }
+        $_SESSION['username'] = $username;
+
         $accountFound = mysqli_num_rows($q);
 
         if ($accountFound == 1) {
             $_SESSION['username'] = $username;
-            $result = "<div class='alert alert-dismissible alert-success'>
-                <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                <strong>Berhasil masuk!</strong>
+            $result = "<div class='alert alert-success' role='alert'>
+                <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
+                Login berhasil!
             </div>";
             header("Refresh: 3, url= dashboard-admin.php");
         } else {
-            $result =
-                "<div class='alert alert-dismissible alert-danger'>
-                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                    <strong>Email / username salah, atau kata sandi salah!</strong>
+            $result = "<div class='alert alert-danger' role='alert'>
+                <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
+                Gagal mengirim pengajuan kegiatan, mohon coba lagi!
             </div>";
         }
     }
@@ -53,14 +57,14 @@ if (isset($_SESSION["username"])) {
             <div class="admin-access">
                 <h1> Akses Admin Panel</h1>
                 <div class="signup-section">
-                    <?php echo $result;?>
                     <h3>Masuk ke Akun</h3>
-                    <p></p>
-                    <form class="signup-form" method="post">
+                    <br>
+                    <?php echo $result;?>
+                    <form class="form-group signup-form" method="post">
                         <label>Username</label>
                         <input type="text" name="username">
                         <p></p>
-                        <label>Kata Sandi</label>
+                        <label style="padding-top: 20px;">Kata Sandi</label>
                         <input type="password" name="password">
                         <button class="btn main-button">Masuk</button>
                     </form>
