@@ -14,6 +14,7 @@
 </head>
 
 <?php
+require_once("connect.php");
 include("navbar.html");
 
 ?>
@@ -37,10 +38,24 @@ include("navbar.html");
                         <div class="left-content">
                             <br>
                             <h4>Tentang Kami</h4>
-                            <p>HKBP Ressort Jatimurni merupakan salah satu gereja di kawasan Kampung Sawah. HKBP Ressort Jatimurni masuk ke dalam Distrik XIX Bekasi.</p>
+                            <p style="font-size:14px">HKBP Ressort Jatimurni merupakan salah satu gereja di kawasan Kampung Sawah. HKBP Ressort Jatimurni masuk ke dalam Distrik XIX Bekasi.</p>
+                            <br>
                             <a href="about-us.php">
                                 <button class="more-button">Selengkapnya</button>
                             </a>
+                            <br><br>
+                            <div class="row justify-content-evenly">
+                                <div class="col-sm-3 additional-info">
+                                    <i class="fa-solid fa-person fa-xl"></i>
+                                    <h5 style="text-align: center">Jumlah Jemaat</h5>
+                                    <p class="about-us-text">837</p>
+                                </div>
+                                <div class="col-sm-3 additional-info">
+                                    <i class="fa-solid fa-house fa-xl"></i>
+                                    <h5 style="text-align: center">Tahun Berdiri</h5>
+                                    <p class='about-us-text'>2008</p>
+                                </div>
+                            </div>
                             <br>
                         </div>
                     </div>
@@ -52,31 +67,42 @@ include("navbar.html");
         </section>
         <section>
             <div class="second-section">
-                <h4 class="title">Jadwal Ibadah Umum</h4>
-                <p class="subtitle">Jadwal Ibadah Daring / Online
-                <table class="table">
-                    <tr>
-                        <th scope="col">Ibadah</th>
-                        <th scope="col">Hari</th>
-                        <th scope="col">Keterangan</th>
-                    </tr>
-                    <?php
+                <h4 class="title">Jadwal Kegiatan Umum</h4>
+                <p class="subtitle">Jadwal Kegiatan Daring / Online
+                <table class="table table-striped table-hover .table-responsive" style="margin-top: 20px">
+                    <thead class="thead-light">
 
-                    //query untuk seluruh ibadah gereja?
-                    $loop = 0;
+                        <tr>
+                            <th scope="col">Kegiatan</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    while ($loop < 5) {
+                        <?php
 
-                        echo "<tr>
-                        <td>Ibadah Mingguan</td>
-                        <td>Kamis, 09 September 2024</td>
-                        <td>Pukul 06.30 WIB Bahasa Indonesia</td>
-                        </tr>";
+                        //query untuk seluruh ibadah gereja?
+                        $loop = 0;
+                        $sql = "SELECT * FROM activities order by tanggal desc";
+                        $q = mysqli_query($conn, $sql);
 
-                        $loop = $loop + 1;
-                    }
+                        while ($activities = mysqli_fetch_assoc($q)) {
 
-                    ?>
+                            $kegiatan = $activities['kegiatan'];
+                            $tanggalMulai = $activities['tanggal'];
+                            $deskripsi = $activities['deskripsi'];
+                            $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
+
+                            echo "<tr>
+                                <td class='table-child'>$kegiatan</td>
+                                <td class='table-child'>$convertedTanggal</td>
+                                <td class='table-child'>$deskripsi</td>
+                            </tr>";
+                        }
+
+                        ?>
+                    </tbody>
                 </table>
             </div>
         </section>
@@ -86,10 +112,7 @@ include("navbar.html");
                 <h4 class="title">Kegiatan Gereja</h4>
                 <p class="subtitle"></p>
                 <div class="church-activities">
-                    <?php
-                    //query untuk semua kegiatan gereja
-
-                    ?>
+                    <img src=""/>
                 </div>
             </div>
         </section>
@@ -98,7 +121,7 @@ include("navbar.html");
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.4961904600045!2d106.93415877499133!3d-6.32969439365987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6992e76c954885%3A0x2a74938e1af7e7e5!2sHKBP%20Ressort%20Jatimurni!5e0!3m2!1sen!2sid!4v1713943691465!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div> -->
 
-        
+
         <?php
         include("footer.php");
 
