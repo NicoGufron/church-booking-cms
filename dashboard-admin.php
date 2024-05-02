@@ -31,9 +31,6 @@ $sql1 = "SELECT * FROM accounts where sektor = '6' ORDER BY id asc";
 $q = mysqli_query($conn, $sql1);
 
 $totalAccounts = mysqli_num_rows($q);
-$totalAccounts = 0;
-$totalRequests = 0;
-
 
 ?>
 

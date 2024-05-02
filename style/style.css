@@ -182,7 +182,6 @@ input {
     border: 1px solid black;
     padding: 10px 15px 10px 15px;
     border: 2.5px solid black;
-    box-shadow: 0px 4px black;
 }
 
 .main-button {
@@ -428,4 +427,44 @@ th, td {
 
 .sidenav a i {
     padding-right: 20px;
+}
+
+.request-list-section {
+    padding: 2.5% 3.5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.child-request-list {
+    font-size: 14px;
+}
+
+.child-request-list:nth-child(2) {
+    font-weight: bold;
+}
+
+.child-request-list:nth-child(8) {
+    text-align: left;
+    width: 30%;
+}
+
+.child-request-list:nth-child(9) {
+    width: 15%;
+    padding: 2.5% 0%;
+}
+
+.choice-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.choice-buttons i {
+    margin: 0% 10px;
+}
+
+.approval-buttons {
+    border: 0px solid;
+    background-color: transparent;
 }

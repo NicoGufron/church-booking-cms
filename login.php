@@ -18,7 +18,7 @@
     include("navbar.html");
 
     if (isset($_SESSION['username'])) {
-        header('dashboard.php');
+        header('location: dashboard.php');
     } else {
         if ($_POST) {
             $username = $_POST['username'];

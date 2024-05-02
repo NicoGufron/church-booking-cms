@@ -15,7 +15,7 @@
 require_once("connect.php");
 $result = "";
 session_start();
-if (isset($_SESSION["username"])) {
+if (isset($_SESSION["username"]) && isset($_SESSION['id'])) {
     header("dashboard-admin.php");
 } else {
     if ($_POST) {
