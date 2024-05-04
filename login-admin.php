@@ -16,7 +16,7 @@ require_once("connect.php");
 $result = "";
 session_start();
 if (isset($_SESSION["username"]) && isset($_SESSION['id'])) {
-    header("dashboard-admin.php");
+    header("Location: dashboard-admin.php");
 } else {
     if ($_POST) {
         $username = $_POST["username"];
@@ -27,7 +27,7 @@ if (isset($_SESSION["username"]) && isset($_SESSION['id'])) {
 
         while ($row = mysqli_fetch_assoc($q)) {
             $_SESSION['id'] = $row['id'];
-            $_SESSION['sektor'] = $row['sektor'];
+            $_SESSION['id_sektor'] = $row['id_sektor'];
         }
         $_SESSION['username'] = $username;
 

@@ -20,11 +20,7 @@ include("sidenav.php");
 </head>
 
 <?php
-    $sql = "SELECT * FROM request_activities WHERE approved = '0'";
-
-    $q = mysqli_query($conn, $sql);
-    
-    $totalRequests = mysqli_num_rows($q);
+    $id = $_SESSION['id'];
 
     $result = "";
 ?>
@@ -33,26 +29,7 @@ include("sidenav.php");
     <div class="container-fluid">
         <section class="request-list-section">
             <h4>Daftar Pengajuan Kegiatan</h4>
-            <p class='subtitle' style="font-size: 14px" ;>Data diurut berdasarkan tanggal mulai</p>
-            <div class="cards">
-                <?php
-                    echo $totalRequests == 0 ? "<div class='row justify-content-start align-items-start'>" : "<div class='row justify-content-start'>";
-                    echo $totalRequests > 0 ? "<div class='col-sm-6 notice'>
-                        <div class='text-card'>
-                            <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
-                            <p>Kamu memiliki <b>$totalRequests</b> pengajuan kegiatan. </p>
-                        </div>
-                    </div>"
-                        :
-                    "<div class='col-sm-6 notice'>
-                        <div class='text-card'>
-                            <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
-                            <p>Belum ada laporan pengajuan kegiatan.</p>
-                        </div>
-                    </div>";
-                    ?>
-                </div>
-            </div>
+            <p class='subtitle' style="font-size: 14px" ;>Data diurut berdasarkan pengajuan paling baru</p>
             <br>
             <table class="table table-striped table-hover .table-responsive">
                 <thead class="thead-light">
@@ -65,7 +42,7 @@ include("sidenav.php");
                         <th scope="col">Tanggal Berakhir</th>
                         <th scope="col">Pilihan Gedung</th>
                         <th scope="col">Deskripsi</th>
-                        <th scope="col">Approve</th>
+                        <th scope="col">Status Pengajuan</th>
                         <!-- <th scope="col">Status</th> -->
                     </tr>
                 </thead>
@@ -77,7 +54,7 @@ include("sidenav.php");
                     $offset = 25;
 
 
-                    $sql = "SELECT * FROM request_activities WHERE approved = '0' ORDER BY tanggal_mulai ASC";
+                    $sql = "SELECT * FROM request_activities WHERE id_account = $id ORDER BY id ASC";
                     // $sql .= ' ORDER BY ' . $sort . ' ASC ';
                     // $sql .= ' LIMIT ' . $limit . ', ' . $offset;
                     $q = mysqli_query($conn, $sql);
@@ -100,13 +77,24 @@ include("sidenav.php");
                         $pilihanGedung = $row['pilihan_gedung'];
                         $approve = $row['approved'];
 
-                        if ($approve == 0) {
+                        $approvedMessage = "";
+
+                        if ($approve == "0") {
+                            $approvedMessage = "<span class='status-message-on-process'>Dalam Proses</span>";
+                        } else if ($approve == "1") {
+                            $approvedMessage = "<span class='status-message-accepted'>Pengajuan diterima</span>";
+                        } else if ($approve == "2") {
+                            $approvedMessage = "<span class='status-message-denied'>Pengajuan ditolak</span>";
+                        }
+ 
+                        if ($approve == "0") {
                             $value = "<p style='padding: 5px; font-weight: 600; background-color: #ccc; border-radius: 10px;'>Belum disetujui</p>";
-                        } else if ($approve == 1) {
+                        } else if ($approve == "1") {
                             $value = "<p style='padding: 5px; font-weight: 600; background-color: #7ABA78; border-radius: 10px; color: #fff'>Disetujui</p>";
-                        } else if ($approve == 2) {
+                        } else if ($approve == "2") {
                             $value = "<p style='padding: 5px; font-weight: 600; background-color: #B80000; border-radius: 10px; color: #fff'>Tidak Disetujui</p>";
                         }
+
 
                         echo "<tr>
                                 <td class='child-request-list'>$id</td>
@@ -117,16 +105,7 @@ include("sidenav.php");
                                 <td class='child-request-list'>$convertedTanggalBerakhir</td>
                                 <td class='child-request-list'>$pilihanGedung</td>
                                 <td class='child-request-list'>$deskripsi</td>
-                                <td class='child-request-list'>
-                                    <span class='choice-buttons'>
-                                        <a href='accept-request.php?id=$id'>
-                                            <i class='fa-solid fa-square-check fa-2xl' style='color: #63E6BE;'></i>
-                                        </a>
-                                        <button type='button' class='approval-buttons' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever=$id data-bs-name=$nama>
-                                            <i class='fa-solid fa-rectangle-xmark fa-2xl' style='color: #f05151;'></i>
-                                        </button>
-                                    </span>
-                                </td>
+                                <td class='child-request-list'>$approvedMessage</td>
                             ";
                     }
 

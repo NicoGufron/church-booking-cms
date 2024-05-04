@@ -1,8 +1,11 @@
 <?php
 require_once("connect.php");
 session_start();
-include("sidenav.php")
+include("sidenav.php");
 
+if (!isset($_SESSION['id_sektor'])) {
+    header("Location: index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,13 +23,13 @@ include("sidenav.php")
 </head>
 
 <?php
-$sql = "SELECT * FROM request_activities";
+$sql = "SELECT * FROM request_activities WHERE approved = '0'";
 
 $q = mysqli_query($conn, $sql);
 
 $totalRequests = mysqli_num_rows($q);
 
-$sql1 = "SELECT * FROM accounts where sektor = '6' ORDER BY id asc";
+$sql1 = "SELECT * FROM accounts where id_sektor = '6' ORDER BY id asc";
 
 $q = mysqli_query($conn, $sql1);
 
@@ -95,14 +98,14 @@ $totalAccounts = mysqli_num_rows($q);
                 </thead>
                 <tbody>
                     <?php
-                        $sektor = $_SESSION['sektor'];
+                        $sektor = $_SESSION['id_sektor'];
                         $sql = "SELECT * FROM activities order by tanggal desc";
                         $q = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($q)) {
                             $kegiatan = $row['kegiatan'];
                             $tanggalMulai = $row['tanggal'];
-                            $sektor = $row['sektor'];
+                            $sektor = $row['id_sektor'];
                             $deskripsi = $row['deskripsi'];
                             $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
                             echo "<tr>

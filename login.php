@@ -38,7 +38,7 @@
 
                 while($row = mysqli_fetch_assoc($q)) {
                     $_SESSION["id"] = $row['id'];
-                    $_SESSION["sektor"] = $row['sektor'];
+                    $_SESSION["id_sektor"] = $row['id_sektor'];
                 }
                 $_SESSION['username'] = $username;
 

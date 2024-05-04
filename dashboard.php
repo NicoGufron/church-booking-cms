@@ -27,6 +27,17 @@ include("sidenav.php");
 
                 <section>
                     <div class="ibadah-section">
+                        <?php
+                            
+
+                        ?>
+                        <div class='notice one-notice'>
+                            <div class='text-card' style="justify-content: flex-start;">
+                                <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
+                                <p>Mari selesaikan registrasi kamu dengan mengisi data diri!</p>
+                            </div>
+                            <a href="account.php"><button class='check-now-button'>Lengkapi Sekarang</button></a>
+                        </div>
                         <h4 class="title">Jadwal Kegiatan Mendatang</h4>
                         <p class="subtitle">Jadwal Ibadah Daring / Online </p>
                         <table class="table table-striped table-hover .table-responsive">
@@ -41,8 +52,8 @@ include("sidenav.php");
                             <tbody>
                                 <?php
 
-                                $sektor = $_SESSION['sektor'];
-                                $sql = "SELECT * FROM activities WHERE sektor = $sektor order by tanggal desc";
+                                $sektor = $_SESSION['id_sektor'];
+                                $sql = "SELECT * FROM activities WHERE id_sektor = $sektor ORDER BY tanggal DESC";
                                 $q = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($q)) {

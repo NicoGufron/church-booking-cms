@@ -52,7 +52,8 @@ p {
 
 .notice {
     margin-top: 20px;
-    background-color: #E0F3F4;
+    background-color: #cce5ff;
+    color: #183153;
     border-radius: 10px;
     padding: 2.5%;
     margin: 1% 1.5% 0% 1.5%;
@@ -64,6 +65,18 @@ p {
     width: auto;
     max-width: 40%;
     height: auto;
+}
+
+.one-notice {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 2.5%;
+    width: auto;
+    min-width: 30%;
+    margin: 2.5%;
+    margin-top: 0%;
+    background-color: #E0F3F4;
 }
 
 .notice:nth-child(1) {
@@ -348,8 +361,9 @@ table {
     border-collapse: collapse;
 }
 
+
 th, td {
-    border: 1px solcid #ddd;
+    border: 1px solid #ddd;
     text-align: center;
     padding: 8px;
 }
@@ -401,6 +415,13 @@ th, td {
     padding: 5% 5%;
 }
 
+.profile-section {
+    padding: 0% 5% 5% 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .table-child {
     /* max-width: 50%; */
     text-align: left;
@@ -439,10 +460,6 @@ th, td {
     font-size: 14px;
 }
 
-.child-request-list:nth-child(2) {
-    font-weight: bold;
-}
-
 .child-request-list:nth-child(8) {
     text-align: left;
     width: 30%;
@@ -451,6 +468,30 @@ th, td {
 .child-request-list:nth-child(9) {
     width: 15%;
     padding: 2.5% 0%;
+}
+
+.status-message-on-process {
+    background-color: #cce5ff;
+    color: #183153;
+    font-weight: 600;
+    padding: 5%;
+    border-radius: 10px;
+}
+
+.status-message-accepted {
+    background-color: #d4edda;
+    color: #155724;
+    font-weight: 600;
+    padding: 5%;
+    border-radius: 10px;
+}
+
+.status-message-denied {
+    background-color: #f8d7da;
+    color: #721c24;
+    font-weight: 600;
+    padding: 5%;
+    border-radius: 10px;
 }
 
 .choice-buttons {
@@ -467,4 +508,16 @@ th, td {
 .approval-buttons {
     border: 0px solid;
     background-color: transparent;
+}
+
+.account-box {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 2.5%;
+    width: 75%;
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
 }

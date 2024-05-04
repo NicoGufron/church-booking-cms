@@ -84,7 +84,7 @@ include("navbar.html");
 
                         //query untuk seluruh ibadah gereja?
                         $loop = 0;
-                        $sql = "SELECT * FROM activities order by tanggal desc";
+                        $sql = "SELECT * FROM activities WHERE id_sektor = '7' ORDER BY tanggal DESC";
                         $q = mysqli_query($conn, $sql);
 
                         while ($activities = mysqli_fetch_assoc($q)) {

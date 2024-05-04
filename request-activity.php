@@ -32,6 +32,7 @@ $result = "<div class='notice'>
 //         </div>";
 
 if ($_POST) {
+    $id_account = $_SESSION['id'];
     $name = $_POST['nama'];
     $phone = $_POST['phone'];
     $startDate = $_POST['startDate'];
@@ -42,10 +43,12 @@ if ($_POST) {
 
     $building = $_POST['buildingOption'];
     $deskripsi = $_POST['deskripsi'];
-    $sektor = $_SESSION['sektor'];
+    $sektor = $_SESSION['id_sektor'];
+
+    
 
     if ($name != "" && $phone != "" && $startDate != "" && $endDate != "" && $building != "" && $deskripsi != "") {   
-        $sql = "INSERT INTO request_activities (id, nama_peminta, nomor_telpon, sektor, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$name', '$phone', $sektor, '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
+        $sql = "INSERT INTO request_activities (id, id_account, nama_peminta, nomor_telpon, id_sektor, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$id_account', '$name', '$phone', '$sektor', '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
         $result = "<div class='alert alert-success' role='alert'>
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             Pengajuan kegiatan telah dikirim!
@@ -64,18 +67,18 @@ if ($_POST) {
 
 <body>
     <div class="container-fluid">
+        <a href="request-activity-list-user.php"><button class='main-button' style='margin-left: 12.5%'>Cek Pengajuan Kegiatan Kamu</button></a>
         <section>
             <div class="request-form-section">
                 <h4>Formulir Pengajuan Kegiatan</h4>
                 <?php
                     echo $result;
-                
                 ?>
 
                 <form class="form-group request-form" method="POST" id='request-form-application'>
-                    <label>Nama: </label>
+                    <label>Nama Lengkap: </label>
                     <input type="text" placeholder="Masukkan nama disini" name='nama'>
-                    <label>Nomor telp yang bisa dihubungi:</label>
+                    <label>Nomor telpon yang bisa dihubungi:</label>
                     <input type="tel" placeholder="Nomor yang berawalan dengan 08..." name='phone' />
                     <div class="row justify-content-between">
                         <div class="col-6">
