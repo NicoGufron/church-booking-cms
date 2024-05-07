@@ -9,6 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href=".//assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="stylesheet" href="style/style.css" />
 </head>
 
@@ -22,9 +25,8 @@ include("navbar.html");
         <section>
             <div class="first-section">
                 <div class="header">
-                    <img class="hero-img" src="assets/images/1.jpg">
-                    <h1 class="hero-text">Tentang Kami</h1>
                 </div>
+                <h1 class="hero-text">Tentang Kami</h1>
             </div>
         </section>
         <div class="container">
@@ -32,7 +34,7 @@ include("navbar.html");
                 <div class="about-church">
                     <div class="row">
                         <div class="col-md-5">
-                            <h4>Latar Belakang HKBP Ressort Jatimurni</h4>
+                            <h3>Latar Belakang HKBP Ressort Jatimurni</h3>
                             <p>Gereja HKBP Jatimurni, yang berdiri sejak tahun 2008, berlokasi di Jalan Raya Kampung Sawah Gang Mantri Tiing Nomor 30 RT 007/RW 001, Jatimurni, Pondok Melati, Kota Bekasi, Jawa Barat 17415. Seiring berjalannya waktu dan pertumbuhan jemaat, gereja memulai pembangunan gedungnya. <br><br>Dengan mengajukan berbagai surat rekomendasi mulai dari tahun 2008 hingga 2012, IMB tetap dikeluarkan oleh walikota pada tanggal 30 April 2014. Sebelum IMB tetap diterbitkan, HKBP Jatimurni telah melakukan peletakkan batu pertama pada tanggal 28 Oktober 2012. Proses demi proses pembangunan dilewati, mulai dari perizinan, pembangunan, hingga interior yang secara komplit selesai di tahun 2021.</p>
                             <p>Pada awalnya, Gereja HKBP Jatimurni merupakan gereja pagaran (pos pelayanan) dari HKBP Ressort Jatiasih. Karena dinilai sudah layak berdiri sendiri, pada 16 Februari 2020 telah menjadi HKBP Persiapan Ressort Jatimurni. Proses demi proses dilewati, akhirnya tanggal 19 Juni 2022 Gereja HKBP Jatimurni telah resmi menjadi HKBP Ressort Jatimurni. </p>
                         </div>
@@ -75,9 +77,71 @@ include("navbar.html");
                     </div>
                 </div>
             </section>
+            <section>
+                <div class="parhalado-section">
+                    <h3>Parhalado</h3>
+                    <br>
+                    <div class="container-fluid">
+                        <div class="row justify-content-around">
+                            <div class="col-sm-4">
+                                <u>Pendeta Ressort</u>
+                                <p>Pdt. Sarip Amsal Pasaribu</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <u>Pendeta Fungsional</u>
+                                <p>Pdt. Maslyana Simamora</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-items-start justify-content-between">
+                            <div class="col-md-4">
+                                <u>Sekretaris Huria</u>
+                                <p>Pdt. Sarip Amsal Pasaribu</p>
+                            </div>
+                            <div class="col-md-4">
+                                <u>Bendahara Huria</u>
+                                <p>St. LM. br. Panjaitan</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <u>Parartaon Huria</u>
+                                <ul>
+                                    <li class='parhalado-child'>St. T. Simanjuntak</li>
+                                    <li class='parhalado-child'>St. B. Marpaung</li>
+                                    <li class='parhalado-child'>St. DMP. Siahaan</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row align-items-start justify-content-between">
+                            <div class="col-md-4">
+                                <u>Dewan Koinonia</u>
+                                <ul>
+                                    <li class='parhalado-child'>St. MHL. Tobing</li>
+                                    <li class='parhalado-child'>St. B. Siahaan</li>
+                                    <li class='parhalado-child'>St. O. Napitupulu</li>
+                                    <li class='parhalado-child'>St. CRA. br. Harahap</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <u>Dewan Marturia</u>
+                                <p>St. U. br. Sagala</p>
+                            </div>
+                            <div class="col-md-4">
+                                <u>Dewan Diakonia</u>
+                                <ul>
+                                    <li class='parhalado-child'>St. L. br. Simamora</li>
+                                    <li class='parhalado-child'>Ev. L. br. Aritonang</li>
+                                    <li class='parhalado-child'>St. R. br. Marbun</li>
+                                    <li class='parhalado-child'>St. JHD. br. Silaban</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <?php
-            include("footer.php")
+        include("footer.php")
         ?>
     </div>
 </body>

@@ -19,13 +19,13 @@
                 <div class="col-md-5">
                     <div class="about-veno">
                         <div class="logo">
-                            <img src="assets/images/logo.jpg" alt="HKBP Jatimurni Logo" style="height: 120px; width: 120px">
+                            <img src="assets/images/logo.jpg" alt="HKBP Jatimurni Logo">
                         </div>
                         <p>Lokasi: Jl. Raya Kampung Sawah, Gang Mantri Tiing No. 30, RT 007/RW 001, Jatimurni, Pondok Melati, Kota Bekasi, Jawa Barat 17415</p>
                         <ul class="social-icons">
                             <li>
-                                <a href="https://www.youtube.com/@hkbpjatimurni5820"><i class="fa fa-instagram"></i></a>
-                                <a href="https://www.instagram.com/hkbpjatimurni_"><i class="fa fa-youtube"></i></a>
+                                <a href="https://www.instagram.com/hkbpjatimurni_"><i class="fa fa-instagram"></i></a>
+                                <a href="https://www.youtube.com/@hkbpjatimurni5820"><i class="fa fa-youtube"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -39,10 +39,9 @@
                             <div class="col-md-auto">
                                 <ul>
                                     <li><a href="index.php"><i class="fa fa-stop"></i>Beranda</a></li>
-                                    <li><a href="about.html"><i class="fa fa-stop"></i>Tentang Kami</a></li>
-                                    <li><a href="team.html"><i class="fa fa-stop"></i>Kegiatan</a></li>
-                                    <li><a href="team.html"><i class="fa fa-stop"></i>Warta</a></li>
-                                    <li><a href="contact.html"><i class="fa fa-stop"></i>Pendaftaran</a></li>
+                                    <li><a href="about-us.php"><i class="fa fa-stop"></i>Tentang Kami</a></li>
+                                    <li><a href="#"><i class="fa fa-stop"></i>Kegiatan</a></li>
+                                    <li><a href="signup.php"><i class="fa fa-stop"></i>Pendaftaran</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -56,12 +55,12 @@
                         <ul>
                             <li><i class="fa fa-phone" style="padding-right: 10px"></i>Telepon:</li>
                             <ul>
-                                <li class="contact-phones">Parhalado: <a href="#">085891683833</a> (St. S. Malau)</li>
-                                <li class="contact-phones">Sekolah Minggu: <a href="#">085694870463</a> (Brigitta Malau)</li>
-                                <li class="contact-phones">Naposo: <a href="#">0811550053</a> (Gaby Silalahi)</li>
-                                <li class="contact-phones">Remaja: <a href="#">082123202987</a> (Racheal Silaban)</li>
+                                <li class="contact-phones">Parhalado: <a target='_blank' href="https://wa.me/6285891683833">085891683833</a> (St. S. Malau)</li>
+                                <li class="contact-phones">Sekolah Minggu: <a target='_blank' href="https://wa.me/625694870463">085694870463</a> (Brigitta Malau)</li>
+                                <li class="contact-phones">Naposo: <a target='_blank' href="https://wa.me/62811550053">0811550053</a> (Gaby Silalahi)</li>
+                                <li class="contact-phones">Remaja: <a target='_blank' href="https://wa.me/6282123202987">082123202987</a> (Racheal Silaban)</li>
                             </ul>
-                            <li><i class="fa fa-envelope" style="padding-right: 10px"></i>Email: <a href="#">hkbpjtm@gmail.com</a></li>
+                            <li><i class="fa fa-envelope" style="padding-right: 10px"></i>Email: <a href="mailto:hkbpjtm@gmail.com">hkbpjtm@gmail.com</a></li>
                         </ul>
                     </div>
                 </div>

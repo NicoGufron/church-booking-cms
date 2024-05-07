@@ -10,6 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href=".//assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="stylesheet" href="style/style.css" />
 </head>
 
@@ -25,15 +28,14 @@ include("navbar.html");
         <section>
             <div class="first-section">
                 <div class="header">
-                    <img class="hero-img" src="assets/images/1.jpg">
-                    <h1 class="hero-text">Gereja HKBP Resort Jatimurni</h1>
                 </div>
+                <h1 class="hero-text">Gereja HKBP Resort Jatimurni</h1>
             </div>
         </section>
 
         <section class="about-us">
-            <div class="container">
-                <div class="row">
+            <div class="container-fluid">
+                <div class="row justify-content-between align-items-center">
                     <div class="col-md-7">
                         <div class="left-content">
                             <br>
@@ -44,13 +46,13 @@ include("navbar.html");
                                 <button class="more-button">Selengkapnya</button>
                             </a>
                             <br><br>
-                            <div class="row justify-content-evenly">
-                                <div class="col-sm-3 additional-info">
+                            <div class="row justify-content-around">
+                                <div class="col-sm-3 m-1 additional-info">
                                     <i class="fa-solid fa-person fa-xl"></i>
                                     <h5 style="text-align: center">Jumlah Jemaat</h5>
                                     <p class="about-us-text">837</p>
                                 </div>
-                                <div class="col-sm-3 additional-info">
+                                <div class="col-sm-3 m-1 additional-info">
                                     <i class="fa-solid fa-house fa-xl"></i>
                                     <h5 style="text-align: center">Tahun Berdiri</h5>
                                     <p class='about-us-text'>2008</p>
@@ -63,47 +65,50 @@ include("navbar.html");
                         <img src="assets/images/2.jpg" class="img-fluid image-church" alt="">
                     </div>
                 </div>
-            </div>
+                <!-- </div> -->
         </section>
         <section>
             <div class="second-section">
                 <h4 class="title">Jadwal Kegiatan Umum</h4>
                 <p class="subtitle">Jadwal Kegiatan Daring / Online
-                <table class="table table-striped table-hover .table-responsive" style="margin-top: 20px">
-                    <thead class="thead-light">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover .table-responsive" style="margin-top: 20px">
+                        <thead class="thead-light">
 
-                        <tr>
-                            <th scope="col">Kegiatan</th>
-                            <th scope="col">Tanggal</th>
-                            <th scope="col">Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                            <tr>
+                                <th scope="col">Kegiatan</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        <?php
+                            <?php
 
-                        //query untuk seluruh ibadah gereja?
-                        $loop = 0;
-                        $sql = "SELECT * FROM activities WHERE id_sektor = '7' ORDER BY tanggal DESC";
-                        $q = mysqli_query($conn, $sql);
+                            //query untuk seluruh ibadah gereja, batasin hanya 5
+                            $loop = 0;
+                            $sql = "SELECT * FROM activities WHERE id_sektor = '7' ORDER BY tanggal DESC LIMIT 5";
+                            $q = mysqli_query($conn, $sql);
 
-                        while ($activities = mysqli_fetch_assoc($q)) {
+                            while ($activities = mysqli_fetch_assoc($q)) {
 
-                            $kegiatan = $activities['kegiatan'];
-                            $tanggalMulai = $activities['tanggal'];
-                            $deskripsi = $activities['deskripsi'];
-                            $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
+                                $kegiatan = $activities['kegiatan'];
+                                $tanggalMulai = $activities['tanggal'];
+                                $deskripsi = $activities['deskripsi'];
+                                $convertedDeskripsi = nl2br($deskripsi);
+                                $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
 
-                            echo "<tr>
+                                echo "<tr>
                                 <td class='table-child'>$kegiatan</td>
                                 <td class='table-child'>$convertedTanggal</td>
-                                <td class='table-child'>$deskripsi</td>
+                                <td class='table-child'>$convertedDeskripsi</td>
                             </tr>";
-                        }
+                            }
 
-                        ?>
-                    </tbody>
-                </table>
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
         <section>
@@ -112,9 +117,11 @@ include("navbar.html");
                 <h4 class="title">Kegiatan Gereja</h4>
                 <p class="subtitle"></p>
                 <div class="church-activities">
-                    <img src=""/>
+                    <img class="img-responsive activity-img" src="assets/images/Ibadah Paskah/1.png" />
+                    <img class="img-responsive activity-img" src="assets/images/Ibadah Paskah/2.png" />
+                    <img class="img-responsive activity-img" src="assets/images/Ibadah Paskah/3.png" />
+                    <img class="img-responsive activity-img" src="assets/images/Ibadah Paskah/4.png" />
                 </div>
-            </div>
         </section>
 
         <!-- <div class="maps">

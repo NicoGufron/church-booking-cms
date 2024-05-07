@@ -20,8 +20,8 @@ ul, p {
 .signup-section{
     border-radius: 10px;
     padding: 5%;
-    width: 50%;
-    margin-top: 5vh;
+    width: 40%;
+    margin: 5%;
     border: 2.5px solid black;
     box-shadow: 0px 5px black;    
     background-color: whitesmoke;
@@ -60,7 +60,6 @@ h4 {
     width: 35%;
     padding: 1.5% 2.5%;
     border: 2px solid black;
-    box-shadow: 0px 4px black;
 }
 
 .custom-select select {
@@ -118,7 +117,6 @@ input {
     border: 1px solid black;
     padding: 10px 15px 10px 15px;
     border: 2.5px solid black;
-    box-shadow: 0px 4px black;
 }
 
 .main-button {
@@ -169,7 +167,6 @@ a {
 
 .input-text-area {
     border-radius: 10px;
-    box-shadow: 0px 4px black;
     border: 2.5px solid black;
     padding: 2.5%;
 }
@@ -184,4 +181,90 @@ a {
 
 #editor {
     color: black;
+}
+
+.offcanvas {
+    display: none;
+}
+
+.drawer-menu {
+    display: none;
+}
+
+.form-title {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+
+    .offcanvas, .drawer-menu {
+        display: block;
+    }
+
+    .nav-item {
+        padding: 3%;
+    }
+
+    .signup-section {
+        width: 70%;
+    }
+
+    .main-button {
+        font-size: 14px;
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+
+    p {
+        font-size: 14px;
+    }
+
+    label {
+        padding: 7.5% 2.5%;
+        font-size: 14px;
+    }
+
+    .form-title {
+        padding-top: 20px;
+        font-size: 18px;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .signup-section {
+        margin-top: 7%;
+    }
+
+    .request-form-section {
+        width: 100%;
+    }
+
+    .main-button {
+        width: 70%;
+        font-size: 14px;
+    }
+
+    .custom-select {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .signup-section {
+        width: 100%;
+        margin: 15% 0%;
+    }
+
+    .navbar-brand {
+        font-size: 0.8rem;
+    }
+
+    .custom-select select{
+        width: 50%;
+        padding: 5%;
+    }
 }

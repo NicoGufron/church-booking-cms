@@ -14,7 +14,6 @@ $q = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_assoc($q);
 
-
 ?>
 
 <!DOCTYPE html>

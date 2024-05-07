@@ -32,7 +32,6 @@ p {
     border-radius: 10px;
     padding: 15px;
     border: 2px solid black;
-    box-shadow: 0px 4px black;
 }
 
 .notify {
@@ -52,8 +51,9 @@ p {
 
 .notice {
     margin-top: 20px;
-    background-color: #cce5ff;
+    background-color: #d1ecf1;
     color: #183153;
+
     border-radius: 10px;
     padding: 2.5%;
     margin: 1% 1.5% 0% 1.5%;
@@ -76,7 +76,8 @@ p {
     min-width: 30%;
     margin: 2.5%;
     margin-top: 0%;
-    background-color: #E0F3F4;
+    color: #183153;
+    background-color: #d1ecf1;
 }
 
 .notice:nth-child(1) {
@@ -86,7 +87,17 @@ p {
 .text-card {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+}
+
+.cards {
+    padding: 1.5%;
+}
+
+.custom-select {
+    padding: 1.5%;
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 35%;
 }
 
 footer {
@@ -181,11 +192,7 @@ label {
     padding-bottom: 2%;
     padding-top: 3%;
     font-weight: bold;
-    color: black;
-}
-
-p {
-    color: black;
+    color: #183153;
 }
 
 input {
@@ -250,8 +257,10 @@ input {
 }
 
 .about-us {
-    padding-top: 10vh;
+    display: block;
     background-color: whitesmoke;
+    padding: 10% 5% 0% 5%;
+
 }
 
 .about-us-text {
@@ -261,8 +270,17 @@ input {
     text-align: center;
 }
 
+.parhalado-section {
+    display: block;
+    padding: 5%;
+    text-align: center;
+}
+
+.parhalado-section h3 {
+    text-align: left;
+}
+
 .image-church {
-    max-width: 640px;
     border-radius: 10px;
     border: 2px solid black;
 }
@@ -306,17 +324,14 @@ input {
     display: flex;
     flex-direction: column;
     padding-left: 5%;
-    padding-top: 5%;
     padding-right: 5%;
+    padding-top: 5%;
     background-color: whitesmoke;
 }
 
 .third-section {
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 2.5%;
+    padding: 5%;
     background-color: whitesmoke;
-    height: 50vh;
 }
 
 
@@ -338,12 +353,36 @@ input {
     width: 100%;
 }
 
-.hero-img {
+.header {
+    background-image: url("../assets/images/1.jpg");
+    height: 80vh;
+    width: 100%;
     background-position: center center;
     background-size: cover;
-    object-fit: cover;
     background-repeat: no-repeat;
+    object-fit: cover;
     display: block;
+    opacity: 0.5;
+}
+
+
+.church-activities {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3% 0%;
+}
+
+.activity-img {
+    height: 20%;
+    width: 20%;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.hero-img {
+    
     width: 100%;
     height: 500px;
     opacity: 0.5;
@@ -377,12 +416,38 @@ th, td {
     font-size: 14px;
 }
 
+.carousel-inner {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+u {
+    color: #183153;
+    font-weight: bold;
+}
+
 .carousel-inner .carousel-item img {
     width: 100%;
     height: 400px;
     background-position: center center;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.signup-section{
+    border-radius: 10px;
+    padding: 5%;
+    width: 40%;
+    margin: 5%;
+    border: 2.5px solid black;
+    box-shadow: 0px 5px black;    
+    background-color: whitesmoke;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vh;
 }
 
 .request-form{
@@ -430,12 +495,13 @@ th, td {
 
 .table-child:nth-child(1), .table-child:nth-child(2) {
     width: 25%;
+    text-align: center;
 }
 
 .table-child:nth-child(1), .table-child:nth-child(2), .table-child:nth-child(3) {
     /* width: 10%; */
     max-width: 25%;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .ibadah-section {
@@ -460,6 +526,10 @@ th, td {
     font-size: 14px;
 }
 
+.child-request-list:nth-child(4) {
+    width: 10%;
+}
+
 .child-request-list:nth-child(8) {
     text-align: left;
     width: 30%;
@@ -471,26 +541,32 @@ th, td {
 }
 
 .status-message-on-process {
+    display: block;
     background-color: #cce5ff;
     color: #183153;
     font-weight: 600;
     padding: 5%;
+    margin: 5%;
     border-radius: 10px;
 }
 
 .status-message-accepted {
+    display: block;
     background-color: #d4edda;
     color: #155724;
     font-weight: 600;
     padding: 5%;
+    margin: 5%;
     border-radius: 10px;
 }
 
 .status-message-denied {
+    display: block;
     background-color: #f8d7da;
     color: #721c24;
     font-weight: 600;
     padding: 5%;
+    margin: 5%;
     border-radius: 10px;
 }
 
@@ -510,6 +586,11 @@ th, td {
     background-color: transparent;
 }
 
+.logo img {
+    height: 120px;
+    width: 120px;
+}
+
 .account-box {
     border: 1px solid black;
     border-radius: 10px;
@@ -520,4 +601,148 @@ th, td {
 .account-form {
     display: flex;
     flex-direction: column;
+}
+
+.deskripsi-area {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.drawer-menu {
+    display: none;
+}
+
+.offcanvas {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+
+    .account-box {
+        width: 100%;
+    }
+
+    .offcanvas {
+        display: block;
+    }
+
+    .nav-item {
+        padding: 3%;
+    }
+
+    .drawer-menu {
+        display: block;
+    }
+
+    .hero-text {
+        font-size: 26px;
+    }
+
+    .additional-info {
+        width: 35%;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    .main-button {
+        font-size: 14px;
+    }
+
+    h5 {
+        font-size: 1rem;
+    }
+
+    h4 {
+        font-size: 1.15rem;
+    }
+
+    th {
+        font-size: 16px;
+    }
+
+    .table-child {
+        text-align: left;
+    }
+
+    p, a, .subtitle {
+        font-size: 14px;
+    }
+
+    .church-activities {
+        justify-content: space-between;
+    }
+
+    .activity-img {
+        height: 30%;
+        width: 30%;
+        margin: 2.5% 0%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+
+    .carousel-inner {
+        margin-top: 10%;
+    }
+
+    .account-box {
+        padding: 7.5%;
+    }
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .activity-img {
+        height: 45%;
+        width: 45%;
+    }
+    
+    .logo img{
+        height: 25%;
+    }
+    
+    .about-veno {
+        margin: 5% 0%;
+    }
+
+    .th {
+        font-size: 14px;
+    }
+
+    .social-icons {
+        margin-top: 2.5%;
+    }
+
+    .second-section {
+        padding-top: 15%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .navbar-brand {
+        font-size: 0.8rem;
+    }
+
+    .hero-text {
+        font-size: 1.25rem;
+    }
+
+    th {
+        font-size: 12px;
+    }
+
+    .additional-info {
+        width: 45%;
+    }
+
+    .church-activities {
+        justify-content: center;
+    }
+
+    .activity-img {
+        width: 75%;
+    }
 }
