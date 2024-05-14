@@ -40,7 +40,7 @@
                                 <ul>
                                     <li><a href="index.php"><i class="fa fa-stop"></i>Beranda</a></li>
                                     <li><a href="about-us.php"><i class="fa fa-stop"></i>Tentang Kami</a></li>
-                                    <li><a href="#"><i class="fa fa-stop"></i>Kegiatan</a></li>
+                                    <li><a href="kegiatan.php"><i class="fa fa-stop"></i>Kegiatan</a></li>
                                     <li><a href="signup.php"><i class="fa fa-stop"></i>Pendaftaran</a></li>
                                 </ul>
                             </div>

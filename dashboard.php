@@ -76,12 +76,13 @@ include("sidenav.php");
                                     while ($row = mysqli_fetch_assoc($q)) {
                                         $kegiatan = $row['kegiatan'];
                                         $deskripsi = $row['deskripsi'];
+                                        $convertedDeskripsi = nl2br($deskripsi);
                                         $tanggalMulai = $row['tanggal'];
                                         $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
                                         echo "<tr>
                                         <td class='table-child'>$kegiatan</td>
                                         <td class='table-child'>$convertedTanggal</td>
-                                        <td class='table-child'>$deskripsi</td>
+                                        <td class='table-child'>$convertedDeskripsi</td>
                                     </tr>";
                                     }
 
