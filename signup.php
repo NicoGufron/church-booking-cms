@@ -47,7 +47,7 @@ if (isset($_SESSION['username'])) {
             //sektor 7 berati tidak ada sektor
             //sektor 1 - 5 diatur sama admin
             //otomatis atur sektor jadi 7, anggapannya belum di assign admin
-            $sql = "INSERT INTO accounts (id, username, password, id_sektor, nama_sektor) values (0, '$username', '$password', 7, 'None')";
+            $sql = "INSERT INTO accounts (id, username, password, id_sektor, nama_sektor) values (0, '$username', '$password', 7, 'Umum')";
             
             $q = mysqli_query($conn, $sql);
 

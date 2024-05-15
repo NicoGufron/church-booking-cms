@@ -21,8 +21,8 @@
     session_start();
     include("navbar.html");
 
-    if (isset($_SESSION['username'])) {
-        header('location: dashboard.php');
+    if (isset($_SESSION['username']) && isset($_SESSION['id'])) {
+        header('Location: dashboard.php');
     } else {
         if ($_POST) {
             $username = $_POST['username'];

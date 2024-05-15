@@ -33,16 +33,16 @@ include("sidenav.php");
                     <div class="ibadah-section">
                         <?php
                         $id = $_SESSION['id'];
-                        $sql = "SELECT id_sektor, nama_sektor FROM accounts where id = $id";
+                        $sql = "SELECT id_wijk, nama_wijk FROM accounts where id = $id";
 
                         $q = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($q)) {
-                            $id_sektor = $row['id_sektor'];
-                            $nama_sektor = $row['nama_sektor'];
+                            $id_wijk = $row['id_wijk'];
+                            $nama_wijk = $row['nama_wijk'];
                         }
 
-                        if ($id_sektor == "7") {
+                        if ($id_wijk == "7") {
                             echo "<div class='notice one-notice'>
                                 <div class='text-card' style='justify-content: flex-start;'>
                                     <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
@@ -54,7 +54,7 @@ include("sidenav.php");
 
                         ?>
 
-                        <h4 class="title">Jadwal Kegiatan Mendatang untuk <?php echo $nama_sektor ?></h4>
+                        <h4 class="title">Jadwal Kegiatan Mendatang untuk <?php echo "wijk " . $nama_wijk ?></h4>
                         <p class="subtitle">Jadwal Ibadah Daring / Online </p>
                         <br>
                         <div class="table-responsive">
@@ -69,8 +69,7 @@ include("sidenav.php");
 
                                 <tbody>
                                     <?php
-                                    // $idsektor = $_SESSION['id_sektor'];
-                                    $sql = "SELECT * FROM activities WHERE id_sektor = $id_sektor ORDER BY tanggal DESC";
+                                    $sql = "SELECT * FROM activities WHERE id_wijk = $id_wijk ORDER BY tanggal DESC";
                                     $q = mysqli_query($conn, $sql);
 
                                     while ($row = mysqli_fetch_assoc($q)) {

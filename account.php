@@ -19,8 +19,8 @@ while ($row = mysqli_fetch_assoc($q)) {
     $email = $row['email'];
     $nomorTelpon = $row['nomor_telpon'];
     $namaKeluarga = $row['nama_keluarga'];
-    $idSektor = $row['id_sektor'];
-    $namaSektor = $row['nama_sektor'];
+    $idSektor = $row['id_wijk'];
+    $namaSektor = $row['nama_wijk'];
 }
 
 if ($_POST) {
@@ -62,7 +62,7 @@ if ($_POST) {
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             <strong>Informasi data pribadi berhasil disimpan!</strong>
         </div>";
-        $sql = "UPDATE accounts SET nama_lengkap = '$postNamaLengkap', email = '$postEmail', nomor_telpon = '$postNomorTelpon', nama_keluarga = '$postNamaKeluarga', id_sektor = '$postIdSektor', nama_sektor = '$namaSektor' WHERE id = '$id'";
+        $sql = "UPDATE accounts SET nama_lengkap = '$postNamaLengkap', email = '$postEmail', nomor_telpon = '$postNomorTelpon', nama_keluarga = '$postNamaKeluarga', id_wijk = '$postIdSektor', nama_wijk = '$namaSektor' WHERE id = '$id'";
         $_SESSION['id_sektor'] = $postIdSektor;
         $q = mysqli_query($conn, $sql);
     }
@@ -108,11 +108,19 @@ if ($_POST) {
                     <label>Pilihan Wijk<span style="color: red">*</span> </label>
                     <select name ='pilihan_sektor' class='custom-select'>
                         <option value='<?php echo $idSektor?>' selected readonly hidden><?php echo $idSektor == "7" ? "Silahkan pilih sektor" : "$idSektor - $namaSektor" ?></option>
-                        <option class='options'value="1">1 - Nazareth</option>
-                        <option class='options'value="2">2 - Jerusalem</option>
-                        <option class='options'value="3">3 - Bethlehem</option>
-                        <option class='options'value="4">4 - Sion</option>
-                        <option class='options'value="5">5 - Galilea</option>
+                        <?php 
+                            $sql = "SELECT * FROM `wijk` WHERE id_wijk <> 6 AND id_wijk <> 7";
+                            $q = mysqli_query($conn, $sql);
+
+                            var_dump($sql);
+
+                            while ($row = mysqli_fetch_assoc($q)) {
+                                var_dump($row);
+                                $idWijk = $row['id_wijk'];
+                                $namaWijk = $row['nama_wijk'];
+                                echo "<option class='options' value='$idWijk'>$idWijk - $namaWijk</option>";
+                            }
+                        ?>
                     </select>
                     <label>Email<span style="color: red">*</span></label>
                     <input type="email" name='email' value=<?php echo $email ?>>

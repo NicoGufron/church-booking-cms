@@ -2,12 +2,12 @@
 require_once("connect.php");
 $menu = "";
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['username'])&& !isset($_SESSION['id'])) {
     header("Location: index.php");
 }
 $id = $_SESSION['id'];
 
-$sql = "SELECT username, id_sektor FROM accounts WHERE id = $id";
+$sql = "SELECT username, id_wijk FROM accounts WHERE id = $id";
 
 
 $q = mysqli_query($conn, $sql);
