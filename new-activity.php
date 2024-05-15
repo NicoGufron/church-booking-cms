@@ -3,6 +3,14 @@ require_once("connect.php");
 session_start();
 include("sidenav.php");
 
+if ($_SESSION['id_wijk'] != "6") {
+    header("Location: index.php");
+}
+
+if (!isset($_SESSION['username']) && !isset($_SESSION['id_wijk'])) {
+    header("Location: index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -29,32 +37,39 @@ $result = "<div class='notify'>
 
 if ($_POST) {
     $postNamaKegiatan = $_POST["nama_kegiatan"];
-    $postPilihanSektor = $_POST["pilihan_sektor"];
+    $postPilihanWijk = $_POST["pilihan_sektor"];
     $postTanggal = $_POST["startDate"];
     $postDeskripsi = $_POST["deskripsi"];
 
-    $namaSektor = "";
+    $namaWijk = "";
 
-    if ($postPilihanSektor == "1") {
-        $namaSektor = "Nazareth";
-    } else if ($postPilihanSektor == "2") {
-        $namaSektor = "Jerusalem";
-    } else if ($postPilihanSektor == "3") {
-        $namaSektor = "Bethlehem";
-    } else if ($postPilihanSektor == "4") {
-        $namaSektor = "Sion";
-    } else if ($postPilihanSektor == "5") {
-        $namaSektor = "Galilea";
+    if ($postPilihanWijk == "1") {
+        $namaWijk = "Nazareth";
+    } else if ($postPilihanWijk == "2") {
+        $namaWijk = "Jerusalem";
+    } else if ($postPilihanWijk == "3") {
+        $namaWijk = "Bethlehem";
+    } else if ($postPilihanWijk == "4") {
+        $namaWijk = "Sion";
+    } else if ($postPilihanWijk == "5") {
+        $namaWijk = "Galilea";
     }
 
     $convertedDate = date("Y-m-d H:m:s", strtotime($postTanggal));
 
-    $sql = "INSERT INTO activities (id, kegiatan, deskripsi, id_sektor, tanggal) VALUES (0, '$postNamaKegiatan', '$postDeskripsi', '$postPilihanSektor', '$convertedDate')";
-
-    $q = mysqli_query($conn, $sql);
-
-    var_dump($q, $sql);
-
+    if ($postNamaKegiatan != "" && $postPilihanWijk != "" && $postTanggal != "" && $postDeskripsi != "") {
+        $sql = "INSERT INTO activities (id, kegiatan, deskripsi, id_wijk, tanggal) VALUES (0, '$postNamaKegiatan', '$postDeskripsi', '$postPilihanWijk', '$convertedDate')";
+        $result = "<div class='alert alert-success' role='alert'>
+            <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
+            Kegiatan baru telah dikirim!
+        </div>";
+        $q = mysqli_query($conn, $sql);
+    } else {
+        $result = "<div class='alert alert-danger' role='alert'>
+            <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
+            Gagal membuat kegiatan baru, mohon coba lagi!
+        </div>";
+    }
 }
 
 ?>
@@ -66,20 +81,26 @@ if ($_POST) {
                 <form class="form-group create-activity-section" method="post">
                     <h4 style="text-align: center";>Buat Kegiatan Baru</h4>
                         <?php echo $result; ?>
-                    <label>Nama Kegiatan: </label>
-                    <input type="text" placeholder="Masukkan nama kegiatan disini" name="nama_kegiatan">
-                    <label>Untuk Wijk ke: </label>
+                    <label>Nama Kegiatan:<span style="color: red">*</span></label>
+                    <input type="text" placeholder="Masukkan nama kegiatan disini" name="nama_kegiatan" required>
+                    <label>Untuk Wijk ke:<span style="color: red">*</span></label>
                     <select name="pilihan_sektor" class="choose-sector-option" style="width: 35%">
-                        <option value='1'>1 - Nazareth</option>
-                        <option value='2'>2 - Jerusalem</option>
-                        <option value='3'>3 - Bethlehem</option>
-                        <option value='4'>4 - Sion</option>
-                        <option value='5'>5 - Galilea</option>
+                        <?php 
+                            $sql = "SELECT * FROM `wijk`";
+                            $q = mysqli_query($conn, $sql);
+
+                            while ($row = mysqli_fetch_assoc($q)) {
+                                var_dump($row);
+                                $idWijk = $row['id_wijk'];
+                                $namaWijk = $row['nama_wijk'];
+                                echo "<option class='options' value='$idWijk'>$idWijk - $namaWijk</option>";
+                            }
+                        ?>
                     </select>
-                    <label>Tanggal dan Waktu Kegiatan:</label>
+                    <label>Tanggal dan Waktu Kegiatan:<span style="color: red">*</span></label>
                     <input type="datetime-local" name='startDate' style="width: 35%" required>
-                    <label>Deskripsi Kegiatan: </label>
-                    <textarea class="deskripsi-area" rows="4" cols="50" name="deskripsi"></textarea>
+                    <label>Deskripsi Kegiatan:<span style="color: red">*</span></label>
+                    <textarea class="deskripsi-area" rows="4" cols="50" name="deskripsi" title="Mohon untuk mengisi deskripsi kegiatan" required></textarea>
                     <button type="submit" class="main-button">Atur Jadwal</button>
                 </form>
             </div>

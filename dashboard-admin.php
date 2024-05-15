@@ -3,7 +3,11 @@ require_once("connect.php");
 session_start();
 include("sidenav.php");
 
-if (!isset($_SESSION['id_sektor'])) {
+if ($_SESSION['id_wijk'] != "6") {
+    header("Location: index.php");
+}
+
+if (!isset ($_SESSION['username'])&& !isset($_SESSION['id_wijk'])) {
     header("Location: index.php");
 }
 ?>
@@ -80,21 +84,36 @@ $totalRequests = mysqli_num_rows($q);
                 </thead>
                 <tbody>
                     <?php
-                        $sektor = $_SESSION['id_sektor'];
                         $sql = "SELECT * FROM activities order by tanggal desc";
                         $q = mysqli_query($conn, $sql);
 
                         while ($row = mysqli_fetch_assoc($q)) {
                             $kegiatan = $row['kegiatan'];
                             $tanggalMulai = $row['tanggal'];
-                            $sektor = $row['id_sektor'];
+                            $idWijk = $row['id_wijk'];
+                            $nama_wijk = "";
+                            if ($idWijk == "1") {
+                                $nama_wijk = "Sion";
+                            } else if ($idWijk == "2") {
+                                $nama_wijk = "Nazareth";
+                            } else if ($idWijk == "3") {
+                                $nama_wijk = "Bethlehem";
+                            } else if ($idWijk == "4") {
+                                $nama_wijk = "Jerusalem";
+                            } else if ($idWijk == "5") {
+                                $nama_wijk = "Galilea";
+                            } else if ($idWijk == "6") {
+                                $nama_wijk = "Parhalado";
+                            } else if ($idWijk == "7") {
+                                $nama_wijk = "Umum";
+                            }
                             $deskripsi = $row['deskripsi'];
                             $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
                             $convertedDeskripsi = nl2br($deskripsi);
                             echo "<tr>
                                 <td class='table-child'>$kegiatan</td>
                                 <td class='table-child'>$convertedTanggal</td>
-                                <td class='table-child'>$sektor</td>
+                                <td class='table-child'>$idWijk - $nama_wijk</td>
                                 <td class='table-child'>$convertedDeskripsi</td>
                             </tr>";
                         }

@@ -2,20 +2,15 @@
 require_once("connect.php");
 $menu = "";
 
-if (!isset($_SESSION['username'])&& !isset($_SESSION['id'])) {
+if (!isset($_SESSION['username']) && !isset($_SESSION['id_wijk'])) {
     header("Location: index.php");
 }
 $id = $_SESSION['id'];
 
 $sql = "SELECT username, id_wijk FROM accounts WHERE id = $id";
-
-
 $q = mysqli_query($conn, $sql);
-
 $row = mysqli_fetch_assoc($q);
-
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -85,12 +80,17 @@ $row = mysqli_fetch_assoc($q);
                 </button> -->
         </nav>
         <div id ="sidenav" class="sidenav">
-            <?php echo $_SESSION['id_sektor'] == 6 ? "<a href='dashboard-admin.php' class='sidenav-links'><i class='fa-solid fa-house'></i>Beranda</a>" : ""; ?>
-            <?php echo $_SESSION['id_sektor'] != 6 ? "<a href='account.php' class='sidenav-links'><i class='fa-solid fa-user'></i>Atur Informasi Pribadi</a>" : "" ?> 
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <?php echo $_SESSION['id_sektor'] == 6 ? "<a href='request-activity-list.php' class='sidenav-links'><i class='fa-solid fa-file-lines'></i>Daftar Pengajuan Kegiatan</a>" : "<a href='request-activity.php' class='sidenav-links active'><i class='fa-solid fa-file-lines'></i>Pengajuan Kegiatan</a>"?>
-            <?php echo $_SESSION['id_sektor'] == 6 ? "<a href='new-activity.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Pengaturan Jadwal Ibadah</a>" : "<a href='dashboard.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Lihat Jadwal Ibadah</a>"; ?> 
-            <a href="logout.php" class="sidenav-links"><i class="fa-solid fa-right-from-bracket" style="color: #ff0000"></i>Keluar</a>
+            <?php if ($_SESSION['id_wijk'] == 6): ?>
+                <a href='dashboard-admin.php' class='sidenav-links'><i class='fa-solid fa-house'></i>Beranda</a>
+                <a href='request-activity-list.php' class='sidenav-links'><i class='fa-solid fa-file-lines'></i>Daftar Pengajuan Kegiatan</a>
+                <a href='new-activity.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Pengaturan Jadwal Ibadah</a>
+            <?php else: ?>
+                <a href='account.php' class='sidenav-links'><i class='fa-solid fa-user'></i>Atur Informasi Pribadi</a>
+                <a href='request-activity.php' class='sidenav-links active'><i class='fa-solid fa-file-lines'></i>Pengajuan Kegiatan</a>
+                <a href='dashboard.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Lihat Jadwal Ibadah</a>
+            <?php endif;?>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="logout.php" class="sidenav-links"><i class="fa-solid fa-right-from-bracket" style="color: #ff0000"></i>Keluar</a>
         </div>
     </body>
     <script>

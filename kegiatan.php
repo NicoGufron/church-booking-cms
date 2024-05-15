@@ -44,7 +44,7 @@ include("navbar.html");
                         <tbody>
                             <?php
                                 $loop = 0;
-                                $sql = "SELECT * FROM activities WHERE id_sektor = '7' ORDER BY tanggal DESC LIMIT 10";
+                                $sql = "SELECT * FROM activities WHERE id_wijk = '7' ORDER BY tanggal DESC LIMIT 10";
                                 $q = mysqli_query($conn, $sql);
     
                                 while ($activities = mysqli_fetch_assoc($q)) {

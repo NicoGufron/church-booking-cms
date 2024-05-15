@@ -72,7 +72,7 @@ include("navbar.html");
                 <h4 class="title">Jadwal Kegiatan Umum</h4>
                 <p class="subtitle">Jadwal Kegiatan Daring / Online
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover .table-responsive" style="margin-top: 20px">
+                    <table class="table table-striped table-hover" style="margin-top: 20px">
                         <thead class="thead-light">
 
                             <tr>

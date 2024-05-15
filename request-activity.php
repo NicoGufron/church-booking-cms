@@ -46,29 +46,15 @@ if ($_POST) {
 
     $building = $_POST['buildingOption'];
     $deskripsi = $_POST['deskripsi'];
-    $sektor = $_SESSION['id_sektor'];
-
-    $nama_sektor = "";
-    if ($sektor == "1") {
-        $nama_sektor = "Nazareth";
-    } else if ($sektor == "2") {
-        $nama_sektor = "Jerusalem";
-    } else if ($sektor == "3") {
-        $nama_sektor = "Bethlehem";
-    } else if ($sektor == "4") {
-        $nama_sektor = "Sion";
-    } else if ($sektor == "5") {
-        $nama_sektor = "Galilea";
-    }
-
-    
+    $idWijk = $_SESSION['id_wijk'];
 
     if ($name != "" && $phone != "" && $startDate != "" && $endDate != "" && $building != "") {   
-        $sql = "INSERT INTO request_activities (id, id_account, nama_peminta, nomor_telpon, id_sektor, nama_sektor, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$id_account', '$name', '$phone', '$sektor', '$nama_sektor', '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
+        $sql = "INSERT INTO request_activities (id, id_account, nama_peminta, nomor_telpon, id_wijk, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$id_account', '$name', '$phone', '$idWijk', '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
         $result = "<div class='alert alert-success' role='alert'>
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             Pengajuan kegiatan telah dikirim!
         </div>";
+        $q = mysqli_query($conn, $sql);
     } else {
         $result = "<div class='alert alert-danger' role='alert'>
             <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
@@ -76,7 +62,6 @@ if ($_POST) {
         </div>";
     }
 
-    $q = mysqli_query($conn, $sql);
 }
 
 ?>
@@ -95,7 +80,7 @@ if ($_POST) {
                     <label>Nama Lengkap:<span style="color: red">*</span></label>
                     <input type="text" placeholder="Masukkan nama disini" name='nama' required>
                     <label>Nomor telpon yang bisa dihubungi:<span style="color: red">*</span></label>
-                    <input type="tel" placeholder="Nomor yang berawalan dengan 08..." name='phone' required/>
+                    <input type="tel" pattern="^08[0-9]\d*" title="Mohon untuk menggunakan angka berawalan 08 dan tidak ada huruf" placeholder="Nomor yang berawalan dengan 08..." name='phone' required/>
                     <div class="row justify-content-between">
                         <div class="col-md-6">
                             <label class="label-date">Tanggal Mulai:<span style="color: red">*</span></label>

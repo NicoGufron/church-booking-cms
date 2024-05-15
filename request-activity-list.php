@@ -1,8 +1,20 @@
 <?php
 require_once("connect.php");
 session_start();
-include("sidenav.php");
+include_once("sidenav.php");
 
+if (isset($_POST['submit-form'])) {
+    $reasonForm = $_POST["reason"];
+    $idForm = $_POST["idForm"];
+    $todayDate = date('Y-m-d');
+
+    $sql = "UPDATE request_activities SET approved = '2', reason = '$reasonForm' WHERE id = '$idForm'";
+    $q = mysqli_query($conn, $sql);
+
+    if ($q) {
+        header("Refresh: 1");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +38,6 @@ include("sidenav.php");
 $sql = "SELECT * FROM request_activities WHERE approved = '0'";
 
 $q = mysqli_query($conn, $sql);
-
 $totalRequests = mysqli_num_rows($q);
 
 $result = "";
@@ -35,91 +46,109 @@ $result = "";
 <body>
     <div class="container-fluid">
         <section class="request-list-section">
-            <h4>Daftar Pengajuan Kegiatan</h4>
-            <p class='subtitle' style="font-size: 14px" ;>Data diurut berdasarkan tanggal mulai</p>
-            <div class="cards">
-                <?php
-                echo $totalRequests == 0 ? "<div class='row justify-content-start align-items-start'>" : "<div class='row justify-content-start'>";
-                echo $totalRequests > 0 ? "<div class='col-sm-6 notice'>
-                        <div class='text-card'>
-                            <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
-                            <p>Kamu memiliki <b>$totalRequests</b> pengajuan kegiatan. </p>
+            <?php if ($totalRequests == 0) : ?>
+                <div class="row justify-content-start align-items-start">
+                <?php else : ?>
+                    <div class="row justify-content-start">
+                    <?php endif; ?>
+
+                    <?php if ($totalRequests > 0) : ?>
+                        <div class="col-sm-6 notice">
+                            <div class="text-card">
+                                <i class="fa-solid fa-circle-info" style="padding-right: 20px;padding-top: 5px"></i>
+                                <p>Kamu memiliki <b><?php echo $totalRequests; ?></b> pengajuan kegiatan.</p>
+                            </div>
                         </div>
-                    </div>"
-                    :
-                    "<div class='col-sm-6 notice'>
-                        <div class='text-card'>
-                            <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
-                            <p>Belum ada laporan pengajuan kegiatan.</p>
+                    <?php else : ?>
+                        <div class="col-sm-6 notice">
+                            <div class="text-card">
+                                <i class="fa-solid fa-circle-info" style="padding-right: 20px;padding-top: 5px"></i>
+                                <p>Belum ada laporan pengajuan kegiatan.</p>
+                            </div>
                         </div>
-                    </div>";
-                ?>
-            </div>
-    </div>
-    <br>
-    <div class="table-responsive">
+                    <?php endif; ?>
 
-        <table class="table table-striped table-hover .table-responsive">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Peminta</th>
-                    <th scope="col">Nomor Telpon</th>
-                    <th scope="col">Wijk</th>
-                    <th scope="col">Tanggal Mulai</th>
-                    <th scope="col">Tanggal Berakhir</th>
-                    <th scope="col">Pilihan Gedung</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">Approve</th>
-                    <!-- <th scope="col">Status</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+                    <h4 style="margin-top:40px">Daftar Pengajuan Kegiatan</h4>
+                    <p class='subtitle' style="font-size: 14px" ;>Data diurut berdasarkan tanggal mulai</p>
+                    <br><br>
+                    <div class="table-responsive">
 
-                $sort = 'nomor_telpon';
-                $limit = 0;
-                $offset = 25;
+                        <table class="table table-striped table-hover .table-responsive">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama Peminta</th>
+                                    <th scope="col">Nomor Telpon</th>
+                                    <th scope="col">Wijk</th>
+                                    <th scope="col">Tanggal Mulai</th>
+                                    <th scope="col">Tanggal Berakhir</th>
+                                    <th scope="col">Pilihan Gedung</th>
+                                    <th scope="col">Deskripsi</th>
+                                    <th scope="col">Approve</th>
+                                    <!-- <th scope="col">Status</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                $sort = 'nomor_telpon';
+                                $limit = 0;
+                                $offset = 25;
 
 
-                $sql = "SELECT * FROM request_activities WHERE approved = '0' ORDER BY tanggal_mulai ASC";
-                // $sql .= ' ORDER BY ' . $sort . ' ASC ';
-                // $sql .= ' LIMIT ' . $limit . ', ' . $offset;
-                $q = mysqli_query($conn, $sql);
+                                $sql = "SELECT * FROM request_activities WHERE approved = '0' ORDER BY tanggal_mulai ASC";
+                                // $sql .= ' ORDER BY ' . $sort . ' ASC ';
+                                // $sql .= ' LIMIT ' . $limit . ', ' . $offset;
+                                $q = mysqli_query($conn, $sql);
 
-                while ($row = mysqli_fetch_assoc($q)) {
-                    $id = $row['id'];
-                    $nama = $row['nama_peminta'];
-                    $telpon = $row['nomor_telpon'];
-                    $sektor = $row['id_sektor'];
-                    $nama_sektor = $row['nama_sektor'];
-                    $deskripsi = $row['deskripsi'];
-                    $convertedDeskripsi = nl2br($deskripsi);
+                                while ($row = mysqli_fetch_assoc($q)) {
+                                    $id = $row['id'];
+                                    $nama = $row['nama_peminta'];
+                                    $telpon = $row['nomor_telpon'];
+                                    $idWijk = $row['id_wijk'];
+                                    if ($idWijk == "1") {
+                                        $nama_wijk = "Sion";
+                                    } else if ($idWijk == "2") {
+                                        $nama_wijk = "Nazareth";
+                                    } else if ($idWijk == "3") {
+                                        $nama_wijk = "Bethlehem";
+                                    } else if ($idWijk == "4") {
+                                        $nama_wijk = "Jerusalem";
+                                    } else if ($idWijk == "5") {
+                                        $nama_wijk = "Galilea";
+                                    } else if ($idWijk == "6") {
+                                        $nama_wijk = "Parhalado";
+                                    } else if ($idWijk == "7") {
+                                        $nama_wijk = "Umum";
+                                    }
 
-                    $tanggalMulai = $row['tanggal_mulai'];
-                    $tanggalBerakhir = $row['tanggal_berakhir'];
-                    $tanggalApprove = $row['tanggal_approve'];
-                    //konversi tanggal
-                    $convertedTanggalMulai = date('d M Y', strtotime($tanggalMulai));
-                    $convertedTanggalBerakhir = date('d M Y', strtotime($tanggalBerakhir));
-                    $convertedTanggalApprove = date('d M Y', strtotime($tanggalApprove));
+                                    $deskripsi = $row['deskripsi'];
+                                    $convertedDeskripsi = nl2br($deskripsi);
 
-                    $pilihanGedung = $row['pilihan_gedung'];
-                    $approve = $row['approved'];
+                                    $tanggalMulai = $row['tanggal_mulai'];
+                                    $tanggalBerakhir = $row['tanggal_berakhir'];
+                                    $tanggalApprove = $row['tanggal_approve'];
+                                    //konversi tanggal
+                                    $convertedTanggalMulai = date('d M Y', strtotime($tanggalMulai));
+                                    $convertedTanggalBerakhir = date('d M Y', strtotime($tanggalBerakhir));
+                                    $convertedTanggalApprove = date('d M Y', strtotime($tanggalApprove));
 
-                    if ($approve == 0) {
-                        $value = "<p style='padding: 5px; font-weight: 600; background-color: #ccc; border-radius: 10px;'>Belum disetujui</p>";
-                    } else if ($approve == 1) {
-                        $value = "<p style='padding: 5px; font-weight: 600; background-color: #7ABA78; border-radius: 10px; color: #fff'>Disetujui</p>";
-                    } else if ($approve == 2) {
-                        $value = "<p style='padding: 5px; font-weight: 600; background-color: #B80000; border-radius: 10px; color: #fff'>Tidak Disetujui</p>";
-                    }
+                                    $pilihanGedung = $row['pilihan_gedung'];
+                                    $approve = $row['approved'];
 
-                    echo "<tr>
+                                    if ($approve == 0) {
+                                        $value = "<p style='padding: 5px; font-weight: 600; background-color: #ccc; border-radius: 10px;'>Belum disetujui</p>";
+                                    } else if ($approve == 1) {
+                                        $value = "<p style='padding: 5px; font-weight: 600; background-color: #7ABA78; border-radius: 10px; color: #fff'>Disetujui</p>";
+                                    } else if ($approve == 2) {
+                                        $value = "<p style='padding: 5px; font-weight: 600; background-color: #B80000; border-radius: 10px; color: #fff'>Tidak Disetujui</p>";
+                                    }
+
+                                    echo "<tr>
                                 <td class='child-request-list'>$id</td>
                                 <td class='child-request-list'>$nama</td>
                                 <td class='child-request-list'>$telpon</td>
-                                <td class='child-request-list'>$sektor - $nama_sektor</td>
+                                <td class='child-request-list'>$idWijk - $nama_wijk</td>
                                 <td class='child-request-list'>$convertedTanggalMulai</td>
                                 <td class='child-request-list'>$convertedTanggalBerakhir</td>
                                 <td class='child-request-list'>$pilihanGedung</td>
@@ -135,15 +164,15 @@ $result = "";
                                     </span>
                                 </td>
                             ";
-                }
+                                }
 
-                ?>
+                                ?>
 
-            </tbody>
-        </table>
-    </div>
+                            </tbody>
+                        </table>
+                    </div>
 
-    </section>
+        </section>
     </div>
 
 
@@ -172,22 +201,6 @@ $result = "";
             </div>
         </div>
     </div>
-
-    <?php
-    if (isset($_POST['submit-form'])) {
-        $reasonForm = $_POST["reason"];
-        $idForm = $_POST["idForm"];
-        $todayDate = date('Y-m-d');
-
-        $sql = "UPDATE request_activities SET approved = '2', tanggal_approve = '$todayDate', reason = '$reasonForm' WHERE id = '$idForm'";
-        $q = mysqli_query($conn, $sql);
-
-        if ($q) {
-            header("Refresh: 1");
-        }
-    }
-
-    ?>
 
     <script>
         function clearField() {

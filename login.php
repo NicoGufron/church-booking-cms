@@ -42,7 +42,7 @@
 
                 while($row = mysqli_fetch_assoc($q)) {
                     $_SESSION["id"] = $row['id'];
-                    $_SESSION["id_sektor"] = $row['id_sektor'];
+                    $_SESSION["id_wijk"] = $row['id_wijk'];
                 }
                 $_SESSION['username'] = $username;
 

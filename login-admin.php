@@ -25,12 +25,12 @@ if (isset($_SESSION["username"]) && isset($_SESSION['id'])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        $sql = "SELECT * FROM accounts WHERE username = '$username' AND password = '$password' AND id_sektor = '6'";
+        $sql = "SELECT * FROM accounts WHERE username = '$username' AND password = '$password' AND id_wijk = '6'";
         $q = mysqli_query($conn, $sql);
 
         while ($row = mysqli_fetch_assoc($q)) {
             $_SESSION['id'] = $row['id'];
-            $_SESSION['id_sektor'] = $row['id_sektor'];
+            $_SESSION['id_wijk'] = $row['id_wijk'];
         }
         $_SESSION['username'] = $username;
 

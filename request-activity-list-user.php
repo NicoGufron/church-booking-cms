@@ -70,7 +70,7 @@ $result = "";
                             $id = $row['id'];
                             $nama = $row['nama_peminta'];
                             $telpon = $row['nomor_telpon'];
-                            $sektor = $row['id_sektor'];
+                            $idWijk = $row['id_wijk'];
                             $deskripsi = $row['deskripsi'];
                             $convertedDeskripsi = nl2br($deskripsi);
 
@@ -113,7 +113,7 @@ $result = "";
                                 <td class='child-request-list'>$counter</td>
                                 <td class='child-request-list'>$nama</td>
                                 <td class='child-request-list'>$telpon</td>
-                                <td class='child-request-list'>$sektor</td>
+                                <td class='child-request-list'>$idWijk</td>
                                 <td class='child-request-list'>$convertedTanggalMulai</td>
                                 <td class='child-request-list'>$convertedTanggalBerakhir</td>
                                 <td class='child-request-list'>$pilihanGedung</td>

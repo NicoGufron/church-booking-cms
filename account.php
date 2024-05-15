@@ -20,7 +20,7 @@ while ($row = mysqli_fetch_assoc($q)) {
     $nomorTelpon = $row['nomor_telpon'];
     $namaKeluarga = $row['nama_keluarga'];
     $idSektor = $row['id_wijk'];
-    $namaSektor = $row['nama_wijk'];
+    $namaWijk = $row['nama_wijk'];
 }
 
 if ($_POST) {
@@ -28,31 +28,31 @@ if ($_POST) {
     $postEmail = $_POST['email'];
     $postNomorTelpon = $_POST['nomor-telpon'];
     $postNamaKeluarga = $_POST['nama-keluarga'];
-    $postIdSektor = $_POST['pilihan_sektor'];
+    $postIdWijk = $_POST['pilihan_sektor'];
 
     //Sektor == Wijk
 
-    $namaSektor = "";
+    $namaWijk = "";
 
-    if ($postIdSektor == "1") {
+    if ($postIdWijk == "1") {
         $idSektor = "1";
-        $namaSektor = "Nazareth";
-    } else if ($postIdSektor == "2") {  
+        $namaWijk = "Sion";
+    } else if ($postIdWijk == "2") {  
         $idSektor = "2";
-        $namaSektor = "Jerusalem";
-    } else if ($postIdSektor == "3") {
+        $namaWijk = "Nazareth";
+    } else if ($postIdWijk == "3") {
         $idSektor = "3";
-        $namaSektor = "Bethlehem";
-    } else if ($postIdSektor == "4") {
+        $namaWijk = "Bethlehem";
+    } else if ($postIdWijk == "4") {
         $idSektor = "4";
-        $namaSektor = "Sion";
-    } else if ($postIdSektor == "5") {
+        $namaWijk = "Jerusalem";
+    } else if ($postIdWijk == "5") {
         $idSektor = "5";
-        $namaSektor = "Galilea";
+        $namaWijk = "Galilea";
     }
 
     //pengecekan semuanya disini
-    if ($postNamaLengkap == "" || $postEmail == "" || $postNomorTelpon == "" || $postNamaKeluarga == "" || $postIdSektor == "") {
+    if ($postNamaLengkap == "" || $postEmail == "" || $postNomorTelpon == "" || $postNamaKeluarga == "" || $postIdWijk == "") {
         $result = "<div class='alert alert-danger' role='alert'>
             <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
             Mohon untuk mengisi informasi data yang kosong!
@@ -62,8 +62,8 @@ if ($_POST) {
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             <strong>Informasi data pribadi berhasil disimpan!</strong>
         </div>";
-        $sql = "UPDATE accounts SET nama_lengkap = '$postNamaLengkap', email = '$postEmail', nomor_telpon = '$postNomorTelpon', nama_keluarga = '$postNamaKeluarga', id_wijk = '$postIdSektor', nama_wijk = '$namaSektor' WHERE id = '$id'";
-        $_SESSION['id_sektor'] = $postIdSektor;
+        $sql = "UPDATE accounts SET nama_lengkap = '$postNamaLengkap', email = '$postEmail', nomor_telpon = '$postNomorTelpon', nama_keluarga = '$postNamaKeluarga', id_wijk = '$postIdWijk', nama_wijk = '$namaWijk' WHERE id = '$id'";
+        $_SESSION['id_wijk'] = $postIdWijk;
         $q = mysqli_query($conn, $sql);
     }
 }
@@ -104,15 +104,13 @@ if ($_POST) {
                     <label style='padding-top: 0%'>Username: </label>
                     <input type="text" value=<?php echo $username ?> disabled>
                     <label>Nama Lengkap<span style="color: red">*</span></label>
-                    <input type="text" name='nama-lengkap' value=<?php echo $namaLengkap ?>>
+                    <input type="text" name='nama-lengkap' required value=<?php echo $namaLengkap ?>>
                     <label>Pilihan Wijk<span style="color: red">*</span> </label>
                     <select name ='pilihan_sektor' class='custom-select'>
-                        <option value='<?php echo $idSektor?>' selected readonly hidden><?php echo $idSektor == "7" ? "Silahkan pilih sektor" : "$idSektor - $namaSektor" ?></option>
+                        <option value='<?php echo $idSektor?>' selected readonly hidden><?php echo $idSektor == "7" ? "Silahkan pilih wijk" : "$idSektor - $namaWijk" ?></option>
                         <?php 
                             $sql = "SELECT * FROM `wijk` WHERE id_wijk <> 6 AND id_wijk <> 7";
                             $q = mysqli_query($conn, $sql);
-
-                            var_dump($sql);
 
                             while ($row = mysqli_fetch_assoc($q)) {
                                 var_dump($row);
@@ -123,9 +121,9 @@ if ($_POST) {
                         ?>
                     </select>
                     <label>Email<span style="color: red">*</span></label>
-                    <input type="email" name='email' value=<?php echo $email ?>>
+                    <input type="email" name='email' pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Mohon untuk menggunakan email yang benar" value=<?php echo $email ?>>
                     <label>Nomor Telpon<span style="color: red">*</span></label>
-                    <input type="telp" name='nomor-telpon' value=<?php echo $nomorTelpon ?>>
+                    <input type="tel" name='nomor-telpon' required pattern="^08[0-9]\d*" placeholder="Nomor telpon berawalan dengan 08.." title="Mohon untuk menggunakan angka berawalan 08" value=<?php echo $nomorTelpon == "0" ? "" : "$nomorTelpon"?>>
                     <label>Nama Keluarga<span style="color: red">*</span></label>
                     <input type="text" name='nama-keluarga' value=<?php echo $namaKeluarga ?>>
                     
