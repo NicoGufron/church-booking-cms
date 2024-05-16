@@ -17,9 +17,8 @@
 </head>
 <?php 
 require_once("connect.php");
-session_start();
 $result = "";
-include("navbar.html");
+include("navbar.php");
 
 if (isset($_SESSION['username']) && isset($_SESSION['id_wijk'])) {
     header("Location: dashboard.php");

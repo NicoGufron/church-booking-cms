@@ -90,7 +90,6 @@ if ($_POST) {
                             $q = mysqli_query($conn, $sql);
 
                             while ($row = mysqli_fetch_assoc($q)) {
-                                var_dump($row);
                                 $idWijk = $row['id_wijk'];
                                 $namaWijk = $row['nama_wijk'];
                                 echo "<option class='options' value='$idWijk'>$idWijk - $namaWijk</option>";

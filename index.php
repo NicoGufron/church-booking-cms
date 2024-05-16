@@ -18,8 +18,7 @@
 
 <?php
 require_once("connect.php");
-include("navbar.html");
-
+include("navbar.php");
 ?>
 
 <body>
@@ -87,7 +86,7 @@ include("navbar.html");
 
                             //query untuk seluruh ibadah gereja, batasin hanya 5
                             $loop = 0;
-                            $sql = "SELECT * FROM activities WHERE id_sektor = '7' ORDER BY tanggal DESC LIMIT 5";
+                            $sql = "SELECT * FROM activities WHERE id_wijk = '7' ORDER BY tanggal DESC LIMIT 5";
                             $q = mysqli_query($conn, $sql);
 
                             while ($activities = mysqli_fetch_assoc($q)) {

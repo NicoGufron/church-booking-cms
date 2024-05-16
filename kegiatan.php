@@ -17,7 +17,7 @@
 </head>
 <?php
 require_once("connect.php");
-include("navbar.html");
+include("navbar.php");
 
 ?>
 

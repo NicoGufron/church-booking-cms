@@ -18,8 +18,7 @@
 <?php 
     require_once("connect.php");
     $result = "";
-    session_start();
-    include("navbar.html");
+    include("navbar.php");
 
     if (isset($_SESSION['username']) && isset($_SESSION['id'])) {
         header('Location: dashboard.php');
@@ -52,7 +51,7 @@
                     $result = "<div class='alert alert-success' role='alert'>
                         Login berhasil!
                     </div>";
-                    header("Refresh: 3, url=dashboard.php");
+                    header("Refresh: 2, url=index.php");
                 } else {
                     $result = "<div class='alert alert-danger' role='alert'>
                         Maaf, akun tidak ditemukan!

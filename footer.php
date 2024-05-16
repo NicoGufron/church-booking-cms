@@ -40,8 +40,26 @@
                                 <ul>
                                     <li><a href="index.php"><i class="fa fa-stop"></i>Beranda</a></li>
                                     <li><a href="about-us.php"><i class="fa fa-stop"></i>Tentang Kami</a></li>
-                                    <li><a href="kegiatan.php"><i class="fa fa-stop"></i>Kegiatan</a></li>
-                                    <li><a href="signup.php"><i class="fa fa-stop"></i>Pendaftaran</a></li>
+                                    <!-- JEMAAT -->
+                                    <?php if (isset($_SESSION["username"]) && isset($_SESSION['id_wijk']) && $_SESSION['id_wijk'] != "6") : ?>
+                                        <li class="nav-item"><a href="request-activity.php"><i class="fa fa-stop"></i>Kegiatan</a></li>
+                                        <!-- ADMIN -->
+                                    <?php elseif (isset($_SESSION["username"]) && $_SESSION['id_wijk'] == "6") : ?>
+                                        <li class="nav-item"><a href="request-activity-list.php"><i class="fa fa-stop"></i>Kegiatan</a></li>
+                                    <?php else : ?>
+                                        <li class="nav-item"><a href="kegiatan.php"><i class="fa fa-stop"></i>Kegiatan</a></li>
+                                    <?php endif; ?>
+                                    
+                                    <?php if (isset($_SESSION["username"]) && isset($_SESSION['id_wijk']) && $_SESSION['id_wijk'] != "6") : ?>
+                                        <li><a href="dashboard.php"><i class="fa fa-stop"></i>Dashboard</a></li>
+                                        <!-- DASHBOARD ADMIN -->
+                                    <?php elseif (isset($_SESSION["username"]) && $_SESSION['id_wijk'] == 6) : ?>
+                                        <li><a href='dashboard-admin.php'><i class="fa fa-stop"></i>Dashboard</a></li>
+                                        <!-- DASHBOARD JEMAAT -->
+                                    <?php else : ?>
+                                        <li><a href="login.php"><i class="fa fa-stop"></i>Login</a></li>
+                                    <?php endif; ?>
+                                    
                                 </ul>
                             </div>
                         </div>
