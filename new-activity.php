@@ -84,7 +84,7 @@ if ($_POST) {
                     <label>Nama Kegiatan:<span style="color: red">*</span></label>
                     <input type="text" placeholder="Masukkan nama kegiatan disini" name="nama_kegiatan" required>
                     <label>Untuk Wijk ke:<span style="color: red">*</span></label>
-                    <select name="pilihan_sektor" class="choose-sector-option" style="width: 35%">
+                    <select name="pilihan_sektor" class="choose-sector-option">
                         <?php 
                             $sql = "SELECT * FROM `wijk`";
                             $q = mysqli_query($conn, $sql);
@@ -97,7 +97,7 @@ if ($_POST) {
                         ?>
                     </select>
                     <label>Tanggal dan Waktu Kegiatan:<span style="color: red">*</span></label>
-                    <input type="datetime-local" name='startDate' style="width: 35%" required>
+                    <input class="waktu-kegiatan" type="datetime-local" name='startDate' required>
                     <label>Deskripsi Kegiatan:<span style="color: red">*</span></label>
                     <textarea class="deskripsi-area" rows="4" cols="50" name="deskripsi" title="Mohon untuk mengisi deskripsi kegiatan" required></textarea>
                     <button type="submit" class="main-button">Atur Jadwal</button>

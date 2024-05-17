@@ -26,16 +26,16 @@ session_start();
             <!-- JEMAAT -->
             <?php if (isset($_SESSION["username"]) && isset($_SESSION['id_wijk']) && $_SESSION['id_wijk'] != "6") : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="request-activity.php">Kegiatan</a>
+                    <a class="nav-link" href="dashboard.php">Jadwal Kegiatan</a>
                 </li>
                 <!-- ADMIN -->
             <?php elseif (isset($_SESSION["username"]) && $_SESSION['id_wijk'] == "6") : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="request-activity-list.php">Kegiatan</a>
+                    <a class="nav-link" href="activity-list.php">Jadwal Kegiatan</a>
                 </li>
             <?php else : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="kegiatan.php">Kegiatan</a>
+                    <a class="nav-link" href="kegiatan.php">Jadwal Kegiatan</a>
                 </li>
             <?php endif; ?>
             <?php if (!isset($_SESSION["username"]) && !isset($_SESSION['id_wijk'])) : ?>
@@ -45,12 +45,12 @@ session_start();
                 <!-- DASHBOARD ADMIN -->
             <?php elseif (isset($_SESSION["username"]) && $_SESSION['id_wijk'] == 6) : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard-admin.php">Dashboard</a>
+                    <a class="nav-link" href="request-activity-list.php">Daftar Pengajuan Kegiatan</a>
                 </li>
                 <!-- DASHBOARD JEMAAT -->
             <?php else : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard.php">Dashboard</a>
+                    <a class="nav-link" href="request-activity.php">Pengajuan Kegiatan</a>
                 </li>
             <?php endif; ?>
         </ul>
@@ -73,12 +73,12 @@ session_start();
                 <!-- JEMAAT -->
                 <?php if (isset($_SESSION["username"]) && isset($_SESSION['id_wijk']) && $_SESSION['id_wijk'] != "6") : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="request-activity.php">Kegiatan</a>
+                        <a class="nav-link" href="request-activity.php">Jadwal Kegiatan</a>
                     </li>
                     <!-- ADMIN -->
                 <?php elseif (isset($_SESSION["username"]) && $_SESSION['id_wijk'] == 6) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="request-activity-list.php">Kegiatan</a>
+                        <a class="nav-link" href="request-activity-list.php">Jadwal Kegiatan</a>
                     </li>
                 <?php else : ?>
                     <li class="nav-item">
@@ -92,12 +92,12 @@ session_start();
                 <!-- DASHBOARD ADMIN -->
                 <?php elseif (isset($_SESSION["username"]) && $_SESSION['id_wijk'] == 6) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard-admin.php">Dashboard</a>
+                        <a class="nav-link" href="request-activity-list.php">Pengajuan Kegiatan</a>
                     </li>
-                <!-- DASHBOARD JEMAAT -->
+                <!-- JEMAAT -->
                 <?php else : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Dashboard</a>
+                        <a class="nav-link" href="request-activity.php">Pengajuan Kegiatan</a>
                     </li>
                 <?php endif; ?>
             </ul>

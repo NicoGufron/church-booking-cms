@@ -7,7 +7,7 @@ if ($_SESSION['id_wijk'] != "6") {
     header("Location: index.php");
 }
 
-if (!isset ($_SESSION['username'])&& !isset($_SESSION['id_wijk'])) {
+if (!isset($_SESSION['username']) && !isset($_SESSION['id_wijk'])) {
     header("Location: index.php");
 }
 ?>
@@ -44,36 +44,39 @@ $totalRequests = mysqli_num_rows($q);
             <h3>Hallo, <?php echo $_SESSION['username'] ?></h3>
             <div class="cards">
                 <?php
-                    echo $totalRequests == 0 ? "<div class='row justify-content-start align-items-start'>" : "<div class='row justify-content-start'>";
-                    echo $totalRequests > 0 ? "<div class='col notice'>
+                echo $totalRequests == 0 ? "<div class='row justify-content-start align-items-start'>" : "<div class='row justify-content-start'>";
+                echo $totalRequests > 0 ? "<div class='col notice'>
                         <div class='text-card'>
                             <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
                             <p style='color: #183153'>Kamu memiliki <b>$totalRequests</b> pengajuan kegiatan. </p>
                         </div>
                         <a href='request-activity-list.php'><button class='check-now-button'>Cek Sekarang</button></a>
                     </div>"
-                        :
+                    :
                     "<div class='col-sm-6 notice'>
                         <div class='text-card'>
                             <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
                             <p>Belum ada laporan pengajuan kegiatan.</p>
                         </div>
                     </div>";
-                    ?>
-                </div>
+                ?>
             </div>
-            <br><br>
-            <div class="row justify-content-between align-items-center">
-                <div class="col-md-4">
-                    <h4 class="title">Jadwal Kegiatan Mendatang</h4>
-                    <p class="subtitle">Jadwal diurut dari yang paling baru.</p>
-                    <br>
-                </div>
-                <div class="col-md-4" style="display: flex; justify-content:flex-end">
-                    <a href="new-activity.php"><button class='check-now-button' style="margin-left: 0">Buat Kegiatan Baru</button></a>
-                </div>
+        </div>
+        <br><br>
+        <div class="row justify-content-between align-items-center">
+            <div class="col-md-4">
+                <h4 class="title">Jadwal Kegiatan Mendatang</h4>
+                <p class="subtitle">Jadwal diurut dari yang paling baru.</p>
+                <br>
             </div>
-            <table class="table table-striped table-hover .table-responsive">
+            <div class="col-md-4" style="display: flex; justify-content:flex-end">
+                <a href="new-activity.php"><button class='check-now-button' style="margin-left: 0">Buat Kegiatan Baru</button></a>
+            </div>
+            <br>    
+        </div>
+        <div class="table-responsive">
+
+            <table class="table table-striped table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Kegiatan</th>
@@ -84,43 +87,44 @@ $totalRequests = mysqli_num_rows($q);
                 </thead>
                 <tbody>
                     <?php
-                        $sql = "SELECT * FROM activities order by tanggal desc";
-                        $q = mysqli_query($conn, $sql);
+                    $sql = "SELECT * FROM activities order by tanggal desc";
+                    $q = mysqli_query($conn, $sql);
 
-                        while ($row = mysqli_fetch_assoc($q)) {
-                            $kegiatan = $row['kegiatan'];
-                            $tanggalMulai = $row['tanggal'];
-                            $idWijk = $row['id_wijk'];
-                            $nama_wijk = "";
-                            if ($idWijk == "1") {
-                                $nama_wijk = "Sion";
-                            } else if ($idWijk == "2") {
-                                $nama_wijk = "Nazareth";
-                            } else if ($idWijk == "3") {
-                                $nama_wijk = "Bethlehem";
-                            } else if ($idWijk == "4") {
-                                $nama_wijk = "Jerusalem";
-                            } else if ($idWijk == "5") {
-                                $nama_wijk = "Galilea";
-                            } else if ($idWijk == "6") {
-                                $nama_wijk = "Parhalado";
-                            } else if ($idWijk == "7") {
-                                $nama_wijk = "Umum";
-                            }
-                            $deskripsi = $row['deskripsi'];
-                            $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
-                            $convertedDeskripsi = nl2br($deskripsi);
-                            echo "<tr>
+                    while ($row = mysqli_fetch_assoc($q)) {
+                        $kegiatan = $row['kegiatan'];
+                        $tanggalMulai = $row['tanggal'];
+                        $idWijk = $row['id_wijk'];
+                        $nama_wijk = "";
+                        if ($idWijk == "1") {
+                            $nama_wijk = "Sion";
+                        } else if ($idWijk == "2") {
+                            $nama_wijk = "Nazareth";
+                        } else if ($idWijk == "3") {
+                            $nama_wijk = "Bethlehem";
+                        } else if ($idWijk == "4") {
+                            $nama_wijk = "Jerusalem";
+                        } else if ($idWijk == "5") {
+                            $nama_wijk = "Galilea";
+                        } else if ($idWijk == "6") {
+                            $nama_wijk = "Parhalado";
+                        } else if ($idWijk == "7") {
+                            $nama_wijk = "Umum";
+                        }
+                        $deskripsi = $row['deskripsi'];
+                        $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
+                        $convertedDeskripsi = nl2br($deskripsi);
+                        echo "<tr>
                                 <td class='table-child'>$kegiatan</td>
                                 <td class='table-child'>$convertedTanggal</td>
                                 <td class='table-child'>$idWijk - $nama_wijk</td>
                                 <td class='table-child'>$convertedDeskripsi</td>
                             </tr>";
-                        }
+                    }
 
                     ?>
                 </tbody>
             </table>
+        </div>
         </div>
     </section>
 

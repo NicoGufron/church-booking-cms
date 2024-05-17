@@ -36,20 +36,21 @@ $result = "<div class='notice'>
 
 if ($_POST) {
     $id_account = $_SESSION['id'];
+    $nameKegiatan = $_POST['nama-kegiatan'];
     $name = $_POST['nama'];
     $phone = $_POST['phone'];
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
 
-    $new_startDate = date('Y-m-d', strtotime($startDate));
-    $new_endDate = date('Y-m-d', strtotime($endDate));
+    $new_startDate = date('Y-m-d H:m:s', strtotime($startDate));
+    $new_endDate = date('Y-m-d H:m:s', strtotime($endDate));
 
     $building = $_POST['buildingOption'];
     $deskripsi = $_POST['deskripsi'];
     $idWijk = $_SESSION['id_wijk'];
 
     if ($name != "" && $phone != "" && $startDate != "" && $endDate != "" && $building != "") {   
-        $sql = "INSERT INTO request_activities (id, id_account, nama_peminta, nomor_telpon, id_wijk, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$id_account', '$name', '$phone', '$idWijk', '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
+        $sql = "INSERT INTO request_activities (id, id_account, nama_kegiatan, nama_peminta, nomor_telpon, id_wijk, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$id_account', '$nameKegiatan', '$name', '$phone', '$idWijk', '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
         $result = "<div class='alert alert-success' role='alert'>
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             Pengajuan kegiatan telah dikirim!
@@ -77,25 +78,27 @@ if ($_POST) {
                 ?>
 
                 <form class="form-group request-form" method="POST" id='request-form-application'>
+                    <label>Nama Kegiatan:<span style="color: red">*</span></label>
+                    <input type="text" placeholder="Masukkan nama kegiatan disini" name='nama-kegiatan' required>
                     <label>Nama Lengkap:<span style="color: red">*</span></label>
                     <input type="text" placeholder="Masukkan nama disini" name='nama' required>
                     <label>Nomor telpon yang bisa dihubungi:<span style="color: red">*</span></label>
                     <input type="tel" pattern="^08[0-9]\d*" title="Mohon untuk menggunakan angka berawalan 08 dan tidak ada huruf" placeholder="Nomor yang berawalan dengan 08..." name='phone' required/>
                     <div class="row justify-content-between">
                         <div class="col-md-6">
-                            <label class="label-date">Tanggal Mulai:<span style="color: red">*</span></label>
-                            <input type="date" name='startDate' required/>
+                            <label class="label-date">Tanggal dan Waktu Mulai:<span style="color: red">*</span></label>
+                            <input type="datetime-local" name='startDate' required/>
                         </div>
                         <div class="col-md-6">
-                            <label class="label-date">Tanggal Akhir:<span style="color: red">*</span></label>
-                            <input type="date" name='endDate' required/>
+                            <label class="label-date">Tanggal dan Waktu Berakhir:<span style="color: red">*</span></label>
+                            <input type="datetime-local" name='endDate' required/>
                         </div>
                     </div>
                     <div class="custom-select">
                         <label>Gedung yang ingin digunakan:<span style="color: red">*</span></label>
                         <select name='buildingOption'>
-                            <option value="Gedung A">Gedung A</option>
-                            <option value="Gedung B">Gedung B</option>
+                            <option value="Gedung GSG">Gedung GSG</option>
+                            <option value="Gedung Gereja Besar">Gedung Gereja Besar</option>
                         </select>
                     </div>
                     <label>Informasi Tambahan (Opsional): </label>

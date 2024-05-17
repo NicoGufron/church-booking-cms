@@ -41,6 +41,7 @@ $result = "";
                     <thead class="thead-light">
                         <tr>
                             <th scope="col"># Pengajuan</th>
+                            <th scope="col">Nama Kegiatan</th>
                             <th scope="col">Nama Peminta</th>
                             <th scope="col">Nomor Telpon</th>
                             <th scope="col">Wijk</th>
@@ -68,6 +69,7 @@ $result = "";
 
                         while ($row = mysqli_fetch_assoc($q)) {
                             $id = $row['id'];
+                            $namaKegiatan = $row['nama_kegiatan'];
                             $nama = $row['nama_peminta'];
                             $telpon = $row['nomor_telpon'];
                             $idWijk = $row['id_wijk'];
@@ -111,6 +113,7 @@ $result = "";
 
                             echo "<tr>
                                 <td class='child-request-list'>$counter</td>
+                                <td class='child-request-list'>$namaKegiatan</td>
                                 <td class='child-request-list'>$nama</td>
                                 <td class='child-request-list'>$telpon</td>
                                 <td class='child-request-list'>$idWijk</td>

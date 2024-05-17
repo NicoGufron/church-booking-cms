@@ -59,7 +59,7 @@ p {
     justify-content: space-between;
     font-weight: 600;
     font-size: 16px;
-    width: auto;
+    width: 20%;
     max-width: 40%;
     height: auto;
 }
@@ -511,28 +511,35 @@ u {
     padding-right: 20px;
 }
 
-.request-list-section {
+.request-list-section, .activity-list-section {
     padding: 2.5% 3.5%;
     display: flex;
     flex-direction: column;
 }
 
-.child-request-list {
+.child-request-list, .child-activity-list {
     font-size: 14px;
+}
+
+.child-activity-list:nth-child(5) {
+    width: 10%;
 }
 
 .child-request-list:nth-child(4) {
     width: 10%;
 }
 
-.child-request-list:nth-child(8) {
+.child-request-list:nth-child(9) {
     text-align: left;
     width: 30%;
 }
 
+th {
+    font-size: 14px;
+}
+
 .child-request-list:nth-child(9) {
     width: 15%;
-    padding: 2.5% 0%;
 }
 
 .status-message-on-process {
@@ -612,6 +619,10 @@ u {
     display: none;
 }
 
+.waktu-kegiatan {
+    width: 35%;
+}
+
 @media screen and (max-width: 768px) {
 
     .account-box {
@@ -683,6 +694,11 @@ u {
         margin-top: 10%;
     }
 
+    .notice {
+        max-width: 80%;
+        padding: 5%;
+    }
+
     .account-box {
         padding: 7.5%;
     }
@@ -713,6 +729,33 @@ u {
 
     .second-section {
         padding-top: 15%;
+    }
+
+    .choose-sector-option {
+        width: 75%;
+    }
+
+    .waktu-kegiatan {
+        width: 75%;
+    }
+
+    .main-button {
+        width: 45%;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .notice {
+        max-width: 90%;
+    }
+
+    .check-now-button {
+        margin-bottom: 20px;
+    }
+    
+    .choose-sector-option {
+        width: 75%;
     }
 }
 

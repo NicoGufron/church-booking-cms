@@ -73,15 +73,16 @@ $result = "";
                     <br><br>
                     <div class="table-responsive">
 
-                        <table class="table table-striped table-hover .table-responsive">
+                        <table class="table table-striped table-hover">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Nama Kegiatan</th>
                                     <th scope="col">Nama Peminta</th>
                                     <th scope="col">Nomor Telpon</th>
                                     <th scope="col">Wijk</th>
-                                    <th scope="col">Tanggal Mulai</th>
-                                    <th scope="col">Tanggal Berakhir</th>
+                                    <th scope="col">Waktu Mulai</th>
+                                    <th scope="col">Waktu Berakhir</th>
                                     <th scope="col">Pilihan Gedung</th>
                                     <th scope="col">Deskripsi</th>
                                     <th scope="col">Approve</th>
@@ -103,6 +104,7 @@ $result = "";
 
                                 while ($row = mysqli_fetch_assoc($q)) {
                                     $id = $row['id'];
+                                    $namaKegiatan = $row['nama_kegiatan'];
                                     $nama = $row['nama_peminta'];
                                     $telpon = $row['nomor_telpon'];
                                     $idWijk = $row['id_wijk'];
@@ -129,8 +131,8 @@ $result = "";
                                     $tanggalBerakhir = $row['tanggal_berakhir'];
                                     $tanggalApprove = $row['tanggal_approve'];
                                     //konversi tanggal
-                                    $convertedTanggalMulai = date('d M Y', strtotime($tanggalMulai));
-                                    $convertedTanggalBerakhir = date('d M Y', strtotime($tanggalBerakhir));
+                                    $convertedTanggalMulai = date('d M Y H:i', strtotime($tanggalMulai));
+                                    $convertedTanggalBerakhir = date('d M Y H:i', strtotime($tanggalBerakhir));
                                     $convertedTanggalApprove = date('d M Y', strtotime($tanggalApprove));
 
                                     $pilihanGedung = $row['pilihan_gedung'];
@@ -146,11 +148,12 @@ $result = "";
 
                                     echo "<tr>
                                 <td class='child-request-list'>$id</td>
+                                <td class='child-request-list'>$namaKegiatan</td>
                                 <td class='child-request-list'>$nama</td>
                                 <td class='child-request-list'>$telpon</td>
                                 <td class='child-request-list'>$idWijk - $nama_wijk</td>
-                                <td class='child-request-list'>$convertedTanggalMulai</td>
-                                <td class='child-request-list'>$convertedTanggalBerakhir</td>
+                                <td class='child-request-list'>$convertedTanggalMulai WIB</td>
+                                <td class='child-request-list'>$convertedTanggalBerakhir WIB</td>
                                 <td class='child-request-list'>$pilihanGedung</td>
                                 <td class='child-request-list'>$convertedDeskripsi</td>
                                 <td class='child-request-list'>

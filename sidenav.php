@@ -5,9 +5,26 @@ $menu = "";
 if (!isset($_SESSION['username']) && !isset($_SESSION['id_wijk'])) {
     header("Location: index.php");
 }
+
+$namaWijk = "";
+
+if ($_SESSION['id_wijk'] == "1") {
+    $namaWijk = "Sion";
+} else if ($_SESSION["id_wijk"] == "2") {
+    $namaWijk = "Nazareth";
+} else if ($_SESSION["id_wijk"] == "3") {
+    $namaWijk = "Bethlehem";
+} else if ($_SESSION["id_wijk"] == "4") {
+    $namaWijk = "Jerusalem";
+} else if ($_SESSION["id_wijk"] == "5") {
+    $namaWijk = "Galilea";
+}
+
+
 $id = $_SESSION['id'];
 
 $sql = "SELECT username, id_wijk FROM accounts WHERE id = $id";
+
 $q = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($q);
 ?>
@@ -43,9 +60,11 @@ $row = mysqli_fetch_assoc($q);
             .sidenav a {
                 padding: 7.5% 7.5%;
                 text-decoration: none;
-                font-size: 16px;
+                font-size: 14px;
                 color: #000;
-                display: block;
+                display: flex;
+                flex-direction: row;
+                align-items: baseline;
                 transition: 0.3s;
             }
             .sidenav a:hover {
@@ -85,10 +104,11 @@ $row = mysqli_fetch_assoc($q);
                 <a href='dashboard-admin.php' class='sidenav-links'><i class="fa-solid fa-table-columns"></i>Dashboard</a>
                 <a href='request-activity-list.php' class='sidenav-links'><i class='fa-solid fa-file-lines'></i>Daftar Pengajuan Kegiatan</a>
                 <a href='new-activity.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Pengaturan Jadwal Ibadah</a>
+                <a href='activity-list.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Jadwal Penggunaan Ruangan Gereja</a>
             <?php else: ?>
                 <a href='account.php' class='sidenav-links'><i class='fa-solid fa-user'></i>Atur Informasi Pribadi</a>
                 <a href='request-activity.php' class='sidenav-links active'><i class='fa-solid fa-file-lines'></i>Pengajuan Kegiatan</a>
-                <a href='dashboard.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Lihat Jadwal Mendatang</a>
+                <a href='dashboard.php' class='sidenav-links'><i class='fa-regular fa-calendar-days'></i>Jadwal Mendatang Wijk <?php echo $namaWijk?></a>
             <?php endif;?>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="logout.php" class="sidenav-links"><i class="fa-solid fa-right-from-bracket" style="color: #ff0000"></i>Keluar</a>
