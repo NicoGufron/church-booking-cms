@@ -48,7 +48,7 @@ $totalRequests = mysqli_num_rows($q);
                 echo $totalRequests > 0 ? "<div class='col notice'>
                         <div class='text-card'>
                             <i class='fa-solid fa-circle-info' style='padding-right: 20px;padding-top: 5px'></i>
-                            <p style='color: #183153'>Kamu memiliki <b>$totalRequests</b> pengajuan kegiatan. </p>
+                            <p style='color: #fff'>Kamu memiliki <b>$totalRequests</b> pengajuan ruangan. </p>
                         </div>
                         <a href='request-activity-list.php'><button class='check-now-button'>Cek Sekarang</button></a>
                     </div>"
@@ -64,12 +64,12 @@ $totalRequests = mysqli_num_rows($q);
         </div>
         <br><br>
         <div class="row justify-content-between align-items-center">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <h4 class="title">Jadwal Kegiatan Mendatang</h4>
                 <p class="subtitle">Jadwal diurut dari yang paling baru.</p>
                 <br>
             </div>
-            <div class="col-md-4" style="display: flex; justify-content:flex-end">
+            <div class="col-md-6" style="display: flex; justify-content:flex-end">
                 <a href="new-activity.php"><button class='check-now-button' style="margin-left: 0">Buat Kegiatan Baru</button></a>
             </div>
             <br>    
@@ -79,6 +79,7 @@ $totalRequests = mysqli_num_rows($q);
             <table class="table table-striped table-hover">
                 <thead class="thead-light">
                     <tr>
+                        <th scope="col">#</th>
                         <th scope="col">Kegiatan</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Wijk</th>
@@ -89,6 +90,8 @@ $totalRequests = mysqli_num_rows($q);
                     <?php
                     $sql = "SELECT * FROM activities order by tanggal desc";
                     $q = mysqli_query($conn, $sql);
+
+                    $counter = 1;
 
                     while ($row = mysqli_fetch_assoc($q)) {
                         $kegiatan = $row['kegiatan'];
@@ -114,11 +117,14 @@ $totalRequests = mysqli_num_rows($q);
                         $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
                         $convertedDeskripsi = nl2br($deskripsi);
                         echo "<tr>
-                                <td class='table-child'>$kegiatan</td>
-                                <td class='table-child'>$convertedTanggal</td>
-                                <td class='table-child'>$idWijk - $nama_wijk</td>
-                                <td class='table-child'>$convertedDeskripsi</td>
+                                <td class='table-child-admin'>$counter</td>
+                                <td class='table-child-admin'>$kegiatan</td>
+                                <td class='table-child-admin'>$convertedTanggal</td>
+                                <td class='table-child-admin'>$idWijk - $nama_wijk</td>
+                                <td class='table-child-admin'>$convertedDeskripsi</td>
                             </tr>";
+
+                        $counter = $counter + 1;
                     }
 
                     ?>

@@ -37,6 +37,7 @@ include("navbar.php");
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Kegiatan</th>
+                                <th scope="col">Wijk</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Keterangan</th>
                             </tr>
@@ -46,17 +47,38 @@ include("navbar.php");
                                 $loop = 0;
                                 $sql = "SELECT * FROM activities WHERE id_wijk = '7' ORDER BY tanggal DESC LIMIT 10";
                                 $q = mysqli_query($conn, $sql);
-    
+                                $namaWijk = "";
+                                
                                 while ($activities = mysqli_fetch_assoc($q)) {
     
                                     $kegiatan = $activities['kegiatan'];
                                     $tanggalMulai = $activities['tanggal'];
                                     $deskripsi = $activities['deskripsi'];
+                                    $idWijk = $activities['id_wijk'];
                                     $convertedDeskripsi = nl2br($deskripsi);
                                     $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
-    
+
+                                    
+                                    
+                                    if ($idWijk == "1") {
+                                        $namaWijk = "Sion";
+                                    } else if ($idWijk == "2") {  
+                                        $namaWijk = "Nazareth";
+                                    } else if ($idWijk == "3") {
+                                        $namaWijk = "Bethlehem";
+                                    } else if ($idWijk == "4") {
+                                        $namaWijk = "Jerusalem";
+                                    } else if ($idWijk == "5") {
+                                        $namaWijk = "Galilea";
+                                    } else if ($idWijk == "6") {
+                                        $namaWijk = "Parhalado";
+                                    } else if ($idWijk == "7") {
+                                        $namaWijk = "Umum";
+                                    }
+                            
                                     echo "<tr>
                                     <td class='table-child'>$kegiatan</td>
+                                    <td class='table-child'>$namaWijk</td>
                                     <td class='table-child'>$convertedTanggal</td>
                                     <td class='table-child'>$convertedDeskripsi</td>
                                     </tr>";

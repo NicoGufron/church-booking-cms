@@ -54,35 +54,68 @@ include("sidenav.php");
 
                         ?>
 
-                        <h4 class="title">Jadwal Kegiatan Mendatang untuk <?php echo "wijk " . $nama_wijk ?></h4>
-                        <p class="subtitle">Jadwal Ibadah Daring / Online </p>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-md-7">
+                                <h4 class="title">Jadwal Kegiatan Mendatang untuk <?php echo "wijk " . $nama_wijk ?></h4>
+                                <p class="subtitle">Jadwal Ibadah Daring / Online </p>
+                            </div>
+                            <div class="col-md-5" style="display: flex; justify-content:flex-end">
+                            <a href="request-activity.php"><button class='check-now-button' style="margin-left: 0">Pengajuan Ruangan</button></a>
+                            </div>
+                        </div>
                         <br>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Kegiatan</th>
                                         <th scope="col">Tanggal</th>
+                                        <th scope="col">Wijk</th>
                                         <th scope="col">Keterangan</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT * FROM activities WHERE id_wijk = $id_wijk ORDER BY tanggal DESC";
+                                    $sql = "SELECT * FROM activities WHERE id_wijk = $id_wijk OR id_wijk = 7 ORDER BY tanggal DESC";
                                     $q = mysqli_query($conn, $sql);
+
+                                    $counter = 1;
 
                                     while ($row = mysqli_fetch_assoc($q)) {
                                         $kegiatan = $row['kegiatan'];
                                         $deskripsi = $row['deskripsi'];
                                         $convertedDeskripsi = nl2br($deskripsi);
+
+                                        $idWijk = $row['id_wijk'];
+                                        $nama_wijk = "";
+                                        if ($idWijk == "1") {
+                                            $nama_wijk = "Sion";
+                                        } else if ($idWijk == "2") {
+                                            $nama_wijk = "Nazareth";
+                                        } else if ($idWijk == "3") {
+                                            $nama_wijk = "Bethlehem";
+                                        } else if ($idWijk == "4") {
+                                            $nama_wijk = "Jerusalem";
+                                        } else if ($idWijk == "5") {
+                                            $nama_wijk = "Galilea";
+                                        } else if ($idWijk == "6") {
+                                            $nama_wijk = "Parhalado";
+                                        } else if ($idWijk == "7") {
+                                            $nama_wijk = "Umum";
+                                        }
+
                                         $tanggalMulai = $row['tanggal'];
                                         $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
                                         echo "<tr>
+                                        <td class='table-child'>$counter</td>
                                         <td class='table-child'>$kegiatan</td>
                                         <td class='table-child'>$convertedTanggal</td>
+                                        <td class='table-child'>$idWijk - $nama_wijk</td>
                                         <td class='table-child'>$convertedDeskripsi</td>
                                     </tr>";
+                                    $counter = $counter + 1;
                                     }
 
                                     ?>

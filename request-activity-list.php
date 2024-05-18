@@ -56,19 +56,19 @@ $result = "";
                         <div class="col-sm-6 notice">
                             <div class="text-card">
                                 <i class="fa-solid fa-circle-info" style="padding-right: 20px;padding-top: 5px"></i>
-                                <p>Kamu memiliki <b><?php echo $totalRequests; ?></b> pengajuan kegiatan.</p>
+                                <p>Kamu memiliki <b><?php echo $totalRequests; ?></b> pengajuan ruangan.</p>
                             </div>
                         </div>
                     <?php else : ?>
                         <div class="col-sm-6 notice">
                             <div class="text-card">
                                 <i class="fa-solid fa-circle-info" style="padding-right: 20px;padding-top: 5px"></i>
-                                <p>Belum ada laporan pengajuan kegiatan.</p>
+                                <p>Belum ada laporan pengajuan ruangan.</p>
                             </div>
                         </div>
                     <?php endif; ?>
 
-                    <h4 style="margin-top:40px">Daftar Pengajuan Kegiatan</h4>
+                    <h4 style="margin-top:40px">Daftar Pengajuan Ruangan</h4>
                     <p class='subtitle' style="font-size: 14px" ;>Data diurut berdasarkan tanggal mulai</p>
                     <br><br>
                     <div class="table-responsive">
@@ -92,10 +92,10 @@ $result = "";
                             <tbody>
                                 <?php
 
+                                $counter = 1;
                                 $sort = 'nomor_telpon';
                                 $limit = 0;
                                 $offset = 25;
-
 
                                 $sql = "SELECT * FROM request_activities WHERE approved = '0' ORDER BY tanggal_mulai ASC";
                                 // $sql .= ' ORDER BY ' . $sort . ' ASC ';
@@ -147,7 +147,7 @@ $result = "";
                                     }
 
                                     echo "<tr>
-                                <td class='child-request-list'>$id</td>
+                                <td class='child-request-list'>$counter</td>
                                 <td class='child-request-list'>$namaKegiatan</td>
                                 <td class='child-request-list'>$nama</td>
                                 <td class='child-request-list'>$telpon</td>
@@ -167,8 +167,8 @@ $result = "";
                                     </span>
                                 </td>
                             ";
+                                    $counter = $counter + 1;
                                 }
-
                                 ?>
 
                             </tbody>
@@ -198,7 +198,7 @@ $result = "";
                     </div>
                     <div class="modal-footer">
                         <button id="dismiss" type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearField()">Kembali</button>
-                        <button name='submit-form' type="submit" class="btn btn-primary">Kirim</button>
+                        <button name='submit-form' type="submit" style="background-color: #5b0f00; border: none" class="btn btn-primary">Kirim</button>
                     </div>
                 </form>
             </div>

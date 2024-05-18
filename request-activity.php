@@ -42,8 +42,8 @@ if ($_POST) {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
 
-    $new_startDate = date('Y-m-d H:m:s', strtotime($startDate));
-    $new_endDate = date('Y-m-d H:m:s', strtotime($endDate));
+    $new_startDate = date('Y-m-d H:i', strtotime($startDate));
+    $new_endDate = date('Y-m-d H:i', strtotime($endDate));
 
     $building = $_POST['buildingOption'];
     $deskripsi = $_POST['deskripsi'];
@@ -55,7 +55,8 @@ if ($_POST) {
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             Pengajuan kegiatan telah dikirim!
         </div>";
-        $q = mysqli_query($conn, $sql);
+        var_dump($sql);
+        // $q = mysqli_query($conn, $sql);
     } else {
         $result = "<div class='alert alert-danger' role='alert'>
             <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
@@ -69,10 +70,10 @@ if ($_POST) {
 
 <body>
     <div class="container-fluid">
-        <a href="request-activity-list-user.php"><button class='main-button' style='margin-left: 12.5%;'>Cek Pengajuan Kegiatan Kamu</button></a>
+        <a href="request-activity-list-user.php"><button class='main-button' style='margin-left: 12.5%;'>Cek Pengajuan Kamu</button></a>
         <section>
             <div class="request-form-section">
-                <h4 class='form-title'>Formulir Pengajuan Kegiatan</h4>
+                <h4 class='form-title'>Formulir Pengajuan Ruangan</h4>
                 <?php
                     echo $result;
                 ?>

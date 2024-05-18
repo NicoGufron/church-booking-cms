@@ -72,7 +72,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['id_wijk'])) {
     <div class="container-fluid" style="display: flex; flex-direction: column; align-items: center">
         <div class="signup-section">
             <div class="header">
-                <h3 style="text-align: left; font-weight: bold";>Daftar Akun</h3>
+                <h3 style="text-align: left; font-weight: bold; color: #5b0f00";>Daftar Akun</h3>
                 <p>Mari daftarkan akun anda untuk mengakses fitur lebih banyak!</p>
             </div>
             <br>

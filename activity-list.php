@@ -26,8 +26,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
 <body>
     <div class="container-fluid">
         <section class="activity-list-section">
-            <h4 style="margin-top: 40px">Jadwal Penggunaan Ruang Gereja</h4>
-            <p class="subtitle" style="font-size: 14px">Data diurut berdasarkan tanggal mulai dan pengajuan telah diterima</p>
+            <h4 style="margin-top: 40px">Jadwal Penggunaan Ruangan Gereja</h4>
+            <p class="subtitle" style="font-size: 14px">Data diurut berdasarkan tanggal mulai</p>
             <br><br>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
@@ -40,8 +40,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                             <th scope="col">Wijk</th>
                             <th scope="col">Tanggal Mulai</th>
                             <th scope="col">Tanggal Berakhir</th>
-                            <th scope="col">Pilihan Gedung</th>
-                            <th scope="col">Tanggal Approve</th>
+                            <th scope="col">Gedung</th>
                             <th scope="col">Deskripsi</th>
                         </tr>
                     </thead>
@@ -49,6 +48,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                         <?php
                         $sql = "SELECT * FROM request_activities WHERE approved = '1' ORDER BY tanggal_mulai ASC";
                         $q = mysqli_query($conn, $sql);
+
+                        $counter = 1;
 
                         while ($row = mysqli_fetch_assoc($q)) {
                             $id = $row['id'];
@@ -79,14 +80,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                             $tanggalBerakhir = $row['tanggal_berakhir'];
                             $tanggalApprove = $row['tanggal_approve'];
                             //konversi tanggal
-                            $convertedTanggalMulai = date('d M Y', strtotime($tanggalMulai));
-                            $convertedTanggalBerakhir = date('d M Y', strtotime($tanggalBerakhir));
+                            $convertedTanggalMulai = date('d M Y H:i', strtotime($tanggalMulai));
+                            $convertedTanggalBerakhir = date('d M Y H:i', strtotime($tanggalBerakhir));
                             $convertedTanggalApprove = date('d M Y', strtotime($tanggalApprove));
 
                             $pilihanGedung = $row['pilihan_gedung'];
 
                             echo "<tr>
-                                <td class='child-activity-list'>$id</td>
+                                <td class='child-activity-list'>$counter</td>
                                 <td class='child-activity-list'>$namaKegiatan</td>
                                 <td class='child-activity-list'>$nama</td>
                                 <td class='child-activity-list'>$telpon</td>
@@ -94,10 +95,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                                 <td class='child-activity-list'>$convertedTanggalMulai</td>
                                 <td class='child-activity-list'>$convertedTanggalBerakhir</td>
                                 <td class='child-activity-list'>$pilihanGedung</td>
-                                <td class='child-activity-list'>$convertedTanggalApprove</td>
-                                <td class='child-activity-list'>$convertedDeskripsi</td>
+                                <td class='child-activity-list' style='text-align:left;'>$convertedDeskripsi</td>
                             ";
+                            $counter = $counter + 1;
                         }
+
                         ?>
                     </tbody>
                 </table>

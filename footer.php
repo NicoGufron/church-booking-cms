@@ -21,7 +21,7 @@
                         <div class="logo">
                             <img src="assets/images/logo.jpg" alt="HKBP Jatimurni Logo">
                         </div>
-                        <p>Lokasi: Jl. Raya Kampung Sawah, Gang Mantri Tiing No. 30, RT 007/RW 001, Jatimurni, Pondok Melati, Kota Bekasi, Jawa Barat 17415</p>
+                        <p style="color: white">Lokasi: Jl. Raya Kampung Sawah, Gang Mantri Tiing No. 30, RT 007/RW 001, Jatimurni, Pondok Melati, Kota Bekasi, Jawa Barat 17415</p>
                         <ul class="social-icons">
                             <li>
                                 <a href="https://www.instagram.com/hkbpjatimurni_"><i class="fa fa-instagram"></i></a>
@@ -33,7 +33,7 @@
                 <div class="col-md-3">
                     <div class="useful-links">
                         <div class="footer-heading">
-                            <h4>Jelajah</h4>
+                            <h4 style="color: white">Jelajah</h4>
                         </div>
                         <div class="row">
                             <div class="col-md-auto">
@@ -68,7 +68,7 @@
                 <div class="col-md-4">
                     <div class="contact-info">
                         <div class="footer-heading">
-                            <h4>Kontak Informasi</h4>
+                            <h4 style="color: white">Kontak Informasi</h4>
                         </div>
                         <ul>
                             <li><i class="fa fa-phone" style="padding-right: 10px"></i>Telepon:</li>
