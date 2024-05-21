@@ -598,9 +598,9 @@ u {
     width: 10%;
 }
 
-.child-request-list:nth-child(10) {
+.child-request-list:nth-child(9) {
     text-align: left;
-    width: 30%;
+    width: 25%;
 }
 
 th {
