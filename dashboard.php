@@ -54,25 +54,18 @@ include("sidenav.php");
 
                         ?>
 
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col-md-7">
-                                <h4 class="title">Jadwal Kegiatan Mendatang untuk <?php echo "wijk " . $nama_wijk ?></h4>
-                                <p class="subtitle">Jadwal Ibadah Daring / Online </p>
-                            </div>
-                            <div class="col-md-5" style="display: flex; justify-content:flex-end">
-                            <a href="request-activity.php"><button class='check-now-button' style="margin-left: 0">Pengajuan Ruangan</button></a>
-                            </div>
-                        </div>
+                        <h4 class="title">Jadwal Kegiatan Mendatang untuk <?php echo "wijk " . $nama_wijk ?></h4>
+                        <p class="subtitle">Jadwal Ibadah Daring / Online </p>
                         <br>
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead-light">
+                            <table class="table table-dashboard table-striped table-hover">
+                                <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Kegiatan</th>
-                                        <th scope="col">Tanggal</th>
-                                        <th scope="col">Wijk</th>
-                                        <th scope="col">Keterangan</th>
+                                        <th style="background-color: #5b0f00; color: #fff" scope="col">#</th>
+                                        <th style="background-color: #5b0f00; color: #fff" scope="col">Kegiatan</th>
+                                        <th style="background-color: #5b0f00; color: #fff" scope="col">Tanggal</th>
+                                        <th style="background-color: #5b0f00; color: #fff" scope="col">Wijk</th>
+                                        <th style="background-color: #5b0f00; color: #fff" scope="col">Keterangan</th>
                                     </tr>
                                 </thead>
 

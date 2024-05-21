@@ -41,6 +41,7 @@ if ($_POST) {
     $phone = $_POST['phone'];
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $alamat = $_POST['alamat'];
 
     $new_startDate = date('Y-m-d H:i', strtotime($startDate));
     $new_endDate = date('Y-m-d H:i', strtotime($endDate));
@@ -50,13 +51,12 @@ if ($_POST) {
     $idWijk = $_SESSION['id_wijk'];
 
     if ($name != "" && $phone != "" && $startDate != "" && $endDate != "" && $building != "") {   
-        $sql = "INSERT INTO request_activities (id, id_account, nama_kegiatan, nama_peminta, nomor_telpon, id_wijk, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$id_account', '$nameKegiatan', '$name', '$phone', '$idWijk', '$deskripsi', '$new_startDate', '$new_endDate', '$building', false)";
+        $sql = "INSERT INTO request_activities (id, id_account, nama_kegiatan, nama_peminta, nomor_telpon, id_wijk, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, alamat, approved) values (0, '$id_account', '$nameKegiatan', '$name', '$phone', '$idWijk', '$deskripsi', '$new_startDate', '$new_endDate', '$building', '$alamat' ,false)";
         $result = "<div class='alert alert-success' role='alert'>
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             Pengajuan kegiatan telah dikirim!
         </div>";
-        var_dump($sql);
-        // $q = mysqli_query($conn, $sql);
+        $q = mysqli_query($conn, $sql);
     } else {
         $result = "<div class='alert alert-danger' role='alert'>
             <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
@@ -85,6 +85,7 @@ if ($_POST) {
                     <input type="text" placeholder="Masukkan nama disini" name='nama' required>
                     <label>Nomor telpon yang bisa dihubungi:<span style="color: red">*</span></label>
                     <input type="tel" pattern="^08[0-9]\d*" title="Mohon untuk menggunakan angka berawalan 08 dan tidak ada huruf" placeholder="Nomor yang berawalan dengan 08..." name='phone' required/>
+                    <p style="font-size: 12px; color: red; margin-top: 5px">* Mohon untuk mengisi 12 - 13 digit nomor telpon</p>
                     <div class="row justify-content-between">
                         <div class="col-md-6">
                             <label class="label-date">Tanggal dan Waktu Mulai:<span style="color: red">*</span></label>
@@ -102,6 +103,8 @@ if ($_POST) {
                             <option value="Gedung Gereja Besar">Gedung Gereja Besar</option>
                         </select>
                     </div>
+                    <label>Alamat:<span style="color: red">*</span></label>
+                    <input type="text" name="alamat">
                     <label>Informasi Tambahan (Opsional): </label>
                     <textarea class="input-text-area" rows="4" cols="50" name="deskripsi"></textarea>
                     <button type="submit" class="main-button">Ajukan Formulir</button>

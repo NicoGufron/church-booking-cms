@@ -38,18 +38,18 @@ $result = "";
             <div class='table-responsive'>
 
                 <table class="table table-striped table-hover">
-                    <thead class="thead-light">
+                    <thead>
                         <tr>
-                            <th scope="col"># Pengajuan</th>
-                            <th scope="col">Nama Kegiatan</th>
-                            <th scope="col">Nama Peminta</th>
-                            <th scope="col">Nomor Telpon</th>
-                            <th scope="col">Wijk</th>
-                            <th scope="col">Tanggal Mulai</th>
-                            <th scope="col">Tanggal Berakhir</th>
-                            <th scope="col">Pilihan Gedung</th>
-                            <th scope="col">Deskripsi</th>
-                            <th scope="col">Status Pengajuan</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col"># Pengajuan</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Nama Kegiatan</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Nama Peminta</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Nomor Telpon</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Wijk</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Tanggal Mulai</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Tanggal Berakhir</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Pilihan Gedung</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Deskripsi</th>
+                            <th style="background-color: #5b0f00; color: #fff; padding: .5rem .5rem" scope="col">Status Pengajuan</th>
                             <!-- <th scope="col">Status</th> -->
                         </tr>
                     </thead>

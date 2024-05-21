@@ -71,13 +71,12 @@ include("navbar.php");
                 <h4 class="title">Jadwal Kegiatan Umum</h4>
                 <p class="subtitle">Jadwal Kegiatan Daring / Online
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover" style="margin-top: 20px">
-                        <thead class="thead-light">
-
-                            <tr>
-                                <th scope="col">Kegiatan</th>
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Keterangan</th>
+                    <table class="table-umum table-hover" style="margin-top: 20px">
+                        <thead >
+                            <tr >
+                                <th bgcolor="#5b0f00" style="color:white">Tanggal</th>
+                                <th bgcolor="#5b0f00" style="color:white">Kegiatan</th>
+                                <th bgcolor="#5b0f00" style="color:white">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,9 +97,9 @@ include("navbar.php");
                                 $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
 
                                 echo "<tr>
-                                <td class='table-child'>$kegiatan</td>
-                                <td class='table-child'>$convertedTanggal</td>
-                                <td class='table-child'>$convertedDeskripsi</td>
+                                <td class='table-home-child'>$kegiatan</td>
+                                <td class='table-home-child'>$convertedTanggal</td>
+                                <td class='table-home-child'>$convertedDeskripsi</td>
                             </tr>";
                             }
 

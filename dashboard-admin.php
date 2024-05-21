@@ -77,13 +77,13 @@ $totalRequests = mysqli_num_rows($q);
         <div class="table-responsive">
 
             <table class="table table-striped table-hover">
-                <thead class="thead-light">
+                <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Kegiatan</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Wijk</th>
-                        <th scope="col">Keterangan</th>
+                        <th scope="col" style="background-color: #5b0f00; color: white;";>#</th>
+                        <th scope="col" style="background-color: #5b0f00; color: white;";>Kegiatan</th>
+                        <th scope="col" style="background-color: #5b0f00; color: white;";>Tanggal</th>
+                        <th scope="col" style="background-color: #5b0f00; color: white;";>Wijk</th>
+                        <th scope="col" style="background-color: #5b0f00; color: white;";>Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>

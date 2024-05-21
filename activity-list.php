@@ -26,22 +26,31 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
 <body>
     <div class="container-fluid">
         <section class="activity-list-section">
-            <h4 style="margin-top: 40px">Jadwal Penggunaan Ruangan Gereja</h4>
-            <p class="subtitle" style="font-size: 14px">Data diurut berdasarkan tanggal mulai</p>
+                <div class="header-activity">
+                    <div class="header-title">
+                        <h4 class="title">Jadwal Penggunaan Ruangan Gereja</h4>
+                        <p class="subtitle" style="font-size: 14px">Data diurut berdasarkan tanggal mulai</p>
+                    </div>
+
+                    <div class="header-button">
+                        <a href="request-activity.php"><button class='pengajuan-button' style="margin-bottom: 0">Pengajuan Ruangan</button></a>
+                    </div>
+                </div>
             <br><br>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
-                    <thead class="thead-light">
+                    <thead">
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nama Kegiatan</th>
-                            <th scope="col">Nama Peminjam</th>
-                            <th scope="col">Nomor Telpon</th>
-                            <th scope="col">Wijk</th>
-                            <th scope="col">Tanggal Mulai</th>
-                            <th scope="col">Tanggal Berakhir</th>
-                            <th scope="col">Gedung</th>
-                            <th scope="col">Deskripsi</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">#</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Nama Kegiatan</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Nama Peminjam</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Nomor Telpon</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Wijk</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Tanggal Mulai</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Tanggal Berakhir</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Gedung</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Alamat</th>
+                            <th style="background-color: #5b0f00; color: white" scope="col">Deskripsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,6 +94,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                             $convertedTanggalApprove = date('d M Y', strtotime($tanggalApprove));
 
                             $pilihanGedung = $row['pilihan_gedung'];
+                            $alamat = $row['alamat'];
+
+                            if (strpos($alamat, "https://") !== false) {
+                                $alamat = "<a target='_blank' href='$alamat'>$alamat</a>";
+                            }
 
                             echo "<tr>
                                 <td class='child-activity-list'>$counter</td>
@@ -95,6 +109,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                                 <td class='child-activity-list'>$convertedTanggalMulai</td>
                                 <td class='child-activity-list'>$convertedTanggalBerakhir</td>
                                 <td class='child-activity-list'>$pilihanGedung</td>
+                                <td class='child-activity-list'>$alamat</td>
                                 <td class='child-activity-list' style='text-align:left;'>$convertedDeskripsi</td>
                             ";
                             $counter = $counter + 1;
