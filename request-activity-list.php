@@ -84,7 +84,6 @@ $result = "";
                                     <th scope="col" style="background-color: #5b0f00; color: white">Waktu Mulai</th>
                                     <th scope="col" style="background-color: #5b0f00; color: white">Waktu Berakhir</th>
                                     <th scope="col" style="background-color: #5b0f00; color: white">Pilihan Gedung</th>
-                                    <th scope="col" style="background-color: #5b0f00; color: white">Alamat</th>
                                     <th scope="col" style="background-color: #5b0f00; color: white">Deskripsi</th>
                                     <th scope="col" style="background-color: #5b0f00; color: white">Approve</th>
                                     <!-- <th scope="col">Status</th> -->
@@ -137,11 +136,6 @@ $result = "";
                                     $convertedTanggalApprove = date('d M Y', strtotime($tanggalApprove));
 
                                     $pilihanGedung = $row['pilihan_gedung'];
-                                    $alamat = $row['alamat'];
-
-                                    if (strpos($alamat, "https://") !== false) {
-                                        $alamat = "<a target='_blank' href='$alamat'>$alamat</a>";
-                                    }
 
                                     $approve = $row['approved'];
 
@@ -162,7 +156,6 @@ $result = "";
                                 <td class='child-request-list'>$convertedTanggalMulai WIB</td>
                                 <td class='child-request-list'>$convertedTanggalBerakhir WIB</td>
                                 <td class='child-request-list'>$pilihanGedung</td>
-                                <td class='child-request-list'>$alamat</td>
                                 <td class='child-request-list'>$convertedDeskripsi</td>
                                 <td class='child-request-list'>
                                     <span class='choice-buttons'>

@@ -49,7 +49,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                             <th style="background-color: #5b0f00; color: white" scope="col">Tanggal Mulai</th>
                             <th style="background-color: #5b0f00; color: white" scope="col">Tanggal Berakhir</th>
                             <th style="background-color: #5b0f00; color: white" scope="col">Gedung</th>
-                            <th style="background-color: #5b0f00; color: white" scope="col">Alamat</th>
                             <th style="background-color: #5b0f00; color: white" scope="col">Deskripsi</th>
                         </tr>
                     </thead>
@@ -93,12 +92,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                             $convertedTanggalBerakhir = date('d M Y H:i', strtotime($tanggalBerakhir));
                             $convertedTanggalApprove = date('d M Y', strtotime($tanggalApprove));
 
-                            $pilihanGedung = $row['pilihan_gedung'];
-                            $alamat = $row['alamat'];
-
-                            if (strpos($alamat, "https://") !== false) {
-                                $alamat = "<a target='_blank' href='$alamat'>$alamat</a>";
-                            }
+                            $pilihanGedung = $row['pilihan_gedung'];                            
 
                             echo "<tr>
                                 <td class='child-activity-list'>$counter</td>
@@ -109,7 +103,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                                 <td class='child-activity-list'>$convertedTanggalMulai</td>
                                 <td class='child-activity-list'>$convertedTanggalBerakhir</td>
                                 <td class='child-activity-list'>$pilihanGedung</td>
-                                <td class='child-activity-list'>$alamat</td>
                                 <td class='child-activity-list' style='text-align:left;'>$convertedDeskripsi</td>
                             ";
                             $counter = $counter + 1;

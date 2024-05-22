@@ -41,7 +41,6 @@ if ($_POST) {
     $phone = $_POST['phone'];
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
-    $alamat = $_POST['alamat'];
 
     $new_startDate = date('Y-m-d H:i', strtotime($startDate));
     $new_endDate = date('Y-m-d H:i', strtotime($endDate));
@@ -103,8 +102,7 @@ if ($_POST) {
                             <option value="Gedung Gereja Besar">Gedung Gereja Besar</option>
                         </select>
                     </div>
-                    <label>Alamat:<span style="color: red">*</span></label>
-                    <input type="text" name="alamat">
+                    
                     <label>Informasi Tambahan (Opsional): </label>
                     <textarea class="input-text-area" rows="4" cols="50" name="deskripsi"></textarea>
                     <button type="submit" class="main-button">Ajukan Formulir</button>

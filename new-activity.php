@@ -40,9 +40,10 @@ if ($_POST) {
     $postPilihanWijk = $_POST["pilihan_sektor"];
     $postTanggal = $_POST["startDate"];
     $postDeskripsi = $_POST["deskripsi"];
+    $postAlamat = $_POST['alamat'];
 
     $namaWijk = "";
-
+    
     if ($postPilihanWijk == "1") {
         $namaWijk = "Nazareth";
     } else if ($postPilihanWijk == "2") {
@@ -54,11 +55,11 @@ if ($_POST) {
     } else if ($postPilihanWijk == "5") {
         $namaWijk = "Galilea";
     }
+    
+    $convertedDate = date("Y-m-d H:i", strtotime($postTanggal));
 
-    $convertedDate = date("Y-m-d H:m:s", strtotime($postTanggal));
-
-    if ($postNamaKegiatan != "" && $postPilihanWijk != "" && $postTanggal != "" && $postDeskripsi != "") {
-        $sql = "INSERT INTO activities (id, kegiatan, deskripsi, id_wijk, tanggal) VALUES (0, '$postNamaKegiatan', '$postDeskripsi', '$postPilihanWijk', '$convertedDate')";
+    if ($postNamaKegiatan != "" && $postPilihanWijk != "" && $postTanggal != "" && $postAlamat != "" && $postDeskripsi != "") {
+        $sql = "INSERT INTO activities (id, kegiatan, deskripsi, id_wijk, tanggal, alamat) VALUES (0, '$postNamaKegiatan', '$postDeskripsi', '$postPilihanWijk', '$convertedDate', '$postAlamat')";
         $result = "<div class='alert alert-success' role='alert'>
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             Kegiatan baru telah dikirim!
@@ -98,6 +99,8 @@ if ($_POST) {
                     </select>
                     <label>Tanggal dan Waktu Kegiatan:<span style="color: red">*</span></label>
                     <input class="waktu-kegiatan" type="datetime-local" name='startDate' required>
+                    <label>Alamat:<span style="color: red">*</span></label>
+                    <input type="text" name="alamat">
                     <label>Deskripsi Kegiatan:<span style="color: red">*</span></label>
                     <textarea class="deskripsi-area" rows="4" cols="50" name="deskripsi" title="Mohon untuk mengisi deskripsi kegiatan" required></textarea>
                     <button type="submit" class="main-button">Atur Jadwal</button>

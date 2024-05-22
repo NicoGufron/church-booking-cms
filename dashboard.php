@@ -65,6 +65,7 @@ include("sidenav.php");
                                         <th style="background-color: #5b0f00; color: #fff" scope="col">Kegiatan</th>
                                         <th style="background-color: #5b0f00; color: #fff" scope="col">Tanggal</th>
                                         <th style="background-color: #5b0f00; color: #fff" scope="col">Wijk</th>
+                                        <th style="background-color: #5b0f00; color: #fff" scope="col">Alamat</th>
                                         <th style="background-color: #5b0f00; color: #fff" scope="col">Keterangan</th>
                                     </tr>
                                 </thead>
@@ -80,6 +81,11 @@ include("sidenav.php");
                                         $kegiatan = $row['kegiatan'];
                                         $deskripsi = $row['deskripsi'];
                                         $convertedDeskripsi = nl2br($deskripsi);
+                                        $alamat = $row['alamat'];
+
+                                        if (strpos($alamat, "https://") !== false) {
+                                            $alamat = "<a target='_blank' href='$alamat'>$alamat</a>";
+                                        }
 
                                         $idWijk = $row['id_wijk'];
                                         $nama_wijk = "";
@@ -106,6 +112,7 @@ include("sidenav.php");
                                         <td class='table-child'>$kegiatan</td>
                                         <td class='table-child'>$convertedTanggal</td>
                                         <td class='table-child'>$idWijk - $nama_wijk</td>
+                                        <td class='table-child'>$alamat</td>
                                         <td class='table-child'>$convertedDeskripsi</td>
                                     </tr>";
                                     $counter = $counter + 1;
