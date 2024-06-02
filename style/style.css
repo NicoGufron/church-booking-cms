@@ -325,6 +325,7 @@ input {
 
 .navbar-brand:hover, .nav-link:hover {
     color: #fff;
+    cursor: pointer;
 }
 
 .navbar-brand, .nav-link {
@@ -439,7 +440,7 @@ table {
 th, td {
     border: 1px solid #ddd;
     text-align: center;
-    padding: 8px;
+    padding: 2px;
 }
 
 .maps {
@@ -529,11 +530,16 @@ u {
     background-color: white;
 }
 
-.table-child-admin:nth-child(2), .table-child-admin:nth-child(3), .table-child-admin:nth-child(4) {
-    width: 20%;
+.table-child-admin {
+    font-size: 14px;
 }
 
-.table-child-admin:last-child {
+.table-child-admin:nth-child(2), .table-child-admin:nth-child(3), .table-child-admin:nth-child(4) {
+    width: 16%;
+}
+
+.table-child-admin:nth-child(6) {
+    width: 40%;
     text-align: left;
 }
 
@@ -541,7 +547,7 @@ u {
     font-weight: bold;
 }
 
-.table-child:nth-child(2), .table-child:nth-child(3), .table-child:nth-child(4) {
+.table-child:nth-child(1), .table-child:nth-child(2), .table-child:nth-child(3) {
     width: 15%;
     text-align: center;
 }
@@ -678,14 +684,6 @@ th {
     border: 2px solid black;
     border-radius: 10px;
     padding: 15px;
-}
-
-.family-names {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 20px;
 }
 
 .family-input-col {

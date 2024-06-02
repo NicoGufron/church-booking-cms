@@ -21,7 +21,7 @@ if ($_SESSION['id_wijk'] == "1") {
 }
 
 
-$id = $_SESSION['id'];
+$id = $_SESSION['id_wijk'];
 
 $sql = "SELECT username, id_wijk FROM accounts WHERE id = $id";
 

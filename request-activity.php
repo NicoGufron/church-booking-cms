@@ -50,7 +50,7 @@ if ($_POST) {
     $idWijk = $_SESSION['id_wijk'];
 
     if ($name != "" && $phone != "" && $startDate != "" && $endDate != "" && $building != "") {   
-        $sql = "INSERT INTO request_activities (id, id_account, nama_kegiatan, nama_peminta, nomor_telpon, id_wijk, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, alamat, approved) values (0, '$id_account', '$nameKegiatan', '$name', '$phone', '$idWijk', '$deskripsi', '$new_startDate', '$new_endDate', '$building', '$alamat' ,false)";
+        $sql = "INSERT INTO request_activities (id, id_account, nama_kegiatan, nama_peminta, nomor_telpon, id_wijk, deskripsi, tanggal_mulai, tanggal_berakhir, pilihan_gedung, approved) values (0, '$id_account', '$nameKegiatan', '$name', '$phone', '$idWijk', '$deskripsi', '$new_startDate', '$new_endDate', '$building' ,false)";
         $result = "<div class='alert alert-success' role='alert'>
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             Pengajuan kegiatan telah dikirim!

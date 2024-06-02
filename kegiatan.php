@@ -36,10 +36,10 @@ include("navbar.php");
                     <table class="table table-striped table-hover" style="margin-top: 20px">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Kegiatan</th>
-                                <th scope="col">Wijk</th>
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Keterangan</th>
+                                <th scope="col" style='background-color: #5b0f00; color: #fff'>Kegiatan</th>
+                                <th scope="col" style='background-color: #5b0f00; color: #fff'>Wijk</th>
+                                <th scope="col" style='background-color: #5b0f00; color: #fff'>Tanggal</th>
+                                <th scope="col" style='background-color: #5b0f00; color: #fff'>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>

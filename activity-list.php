@@ -20,6 +20,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css"></script>
     <link rel="stylesheet" href="style/style.css" />
 </head>
 
@@ -38,8 +40,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                 </div>
             <br><br>
             <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead">
+                <table class="table table-striped table-hover" id="dataTable">
+                    <thead>
                         <tr>
                             <th style="background-color: #5b0f00; color: white" scope="col">#</th>
                             <th style="background-color: #5b0f00; color: white" scope="col">Nama Kegiatan</th>
@@ -104,6 +106,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
                                 <td class='child-activity-list'>$convertedTanggalBerakhir</td>
                                 <td class='child-activity-list'>$pilihanGedung</td>
                                 <td class='child-activity-list' style='text-align:left;'>$convertedDeskripsi</td>
+                            </tr>
                             ";
                             $counter = $counter + 1;
                         }
@@ -115,6 +118,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION["id_wijk"]) && $_SESSION["
         </section>
     </div>
 </body>
-
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    })
+</script>
 
 </html>

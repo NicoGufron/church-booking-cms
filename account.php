@@ -28,7 +28,7 @@ if ($_POST) {
     $postNamaLengkap = $_POST['nama-lengkap'];
     $postEmail = $_POST['email'];
     $postNomorTelpon = $_POST['nomor-telpon'];
-    $postNamaKeluarga = $_POST['nama-keluarga'];
+    // $postNamaKeluarga = $_POST['nama-keluarga'];
     $postNamaMarga = $_POST['nama-marga'];
     $postIdWijk = $_POST['pilihan_sektor'];
 
@@ -54,7 +54,7 @@ if ($_POST) {
     }
 
     //pengecekan semuanya disini
-    if ($postNamaLengkap == "" || $postEmail == "" || $postNomorTelpon == "" || $postNamaMarga == "" || $postNamaKeluarga == "" || $postIdWijk == "") {
+    if ($postNamaLengkap == "" || $postEmail == "" || $postNomorTelpon == "" || $postNamaMarga == "" || $postIdWijk == "") {
         $result = "<div class='alert alert-danger' role='alert'>
             <i class='fa-solid fa-xmark' style='padding-right: 10px;padding-top: 5px'></i>
             Mohon untuk mengisi informasi data yang kosong!
@@ -64,7 +64,7 @@ if ($_POST) {
             <i class='fa-solid fa-check' style='padding-right: 10px;padding-top: 5px'></i>
             <strong>Informasi data pribadi berhasil disimpan!</strong>
         </div>";
-        $sql = "UPDATE accounts SET nama_lengkap = '$postNamaLengkap', email = '$postEmail', nomor_telpon = '$postNomorTelpon', nama_keluarga = '$postNamaKeluarga', nama_marga = '$postNamaMarga', id_wijk = '$postIdWijk', nama_wijk = '$namaWijk' WHERE id = '$id'";
+        $sql = "UPDATE accounts SET nama_lengkap = '$postNamaLengkap', email = '$postEmail', nomor_telpon = '$postNomorTelpon', nama_marga = '$postNamaMarga', id_wijk = '$postIdWijk', nama_wijk = '$namaWijk' WHERE id = '$id'";
         $_SESSION['id_wijk'] = $postIdWijk;
         $q = mysqli_query($conn, $sql);
     }
@@ -126,13 +126,13 @@ if ($_POST) {
                     <label>Nomor Telpon<span style="color: red">*</span></label>
                     <input type="tel" name='nomor-telpon' required pattern="^08[0-9]\d*" placeholder="Nomor telpon berawalan dengan 08.." title="Mohon untuk menggunakan angka berawalan 08" value=<?php echo $nomorTelpon == "0" ? "" : "$nomorTelpon" ?>>
                     <div class="family-names">
-                        <div class="family-input-col">
+                        <!-- <div class="family-input-col">
                             <label>Nama Keluarga<span style="color: red">*</span></label>
                             <input type="text" name='nama-keluarga' placeholder="Kel. Simanjuntak" value=<?= $namaKeluarga ?>>
-                        </div>
+                        </div> -->
                         <div class="family-input-col">
-                            <label>Nama Marga<span style="color: red">*</span></label>
-                            <input type="text" name='nama-marga' placeholder="br. Rumahorbo" value=<?= $namaMarga ?>>
+                            <label>Nama Marga / Boru<span style="color: red">*</span></label>
+                            <input type="text" name='nama-marga' placeholder="Contoh: br. Rumahorbo" value=<?= $namaMarga ?>>
                         </div>
                     </div>
 

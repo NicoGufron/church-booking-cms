@@ -26,6 +26,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['id_wijk'])) {
     <link rel="apple-touch-icon" sizes="180x180" href=".//assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css"></script>
     <link rel="stylesheet" href="style/style.css" />
 </head>
 
@@ -76,14 +78,16 @@ $totalRequests = mysqli_num_rows($q);
         </div>
         <div class="table-responsive">
 
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" id="dataTable">
                 <thead>
                     <tr>
                         <th scope="col" style="background-color: #5b0f00; color: white;";>#</th>
                         <th scope="col" style="background-color: #5b0f00; color: white;";>Kegiatan</th>
                         <th scope="col" style="background-color: #5b0f00; color: white;";>Tanggal</th>
                         <th scope="col" style="background-color: #5b0f00; color: white;";>Wijk</th>
+                        <th scope="col" style="background-color: #5b0f00; color: white;";>Alamat</th>
                         <th scope="col" style="background-color: #5b0f00; color: white;";>Keterangan</th>
+                        <th scope="col" style="background-color: #5b0f00; color: white;";>Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,9 +98,11 @@ $totalRequests = mysqli_num_rows($q);
                     $counter = 1;
 
                     while ($row = mysqli_fetch_assoc($q)) {
+                        $id = $row['id'];
                         $kegiatan = $row['kegiatan'];
                         $tanggalMulai = $row['tanggal'];
                         $idWijk = $row['id_wijk'];
+                        $alamat = $row['alamat'];
                         $nama_wijk = "";
                         if ($idWijk == "1") {
                             $nama_wijk = "Sion";
@@ -113,6 +119,11 @@ $totalRequests = mysqli_num_rows($q);
                         } else if ($idWijk == "7") {
                             $nama_wijk = "Umum";
                         }
+
+                        if (strpos($alamat, "https://") !== false) {
+                            $alamat = "<a target='_blank' href='$alamat'>$alamat</a>";
+                        }
+
                         $deskripsi = $row['deskripsi'];
                         $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
                         $convertedDeskripsi = nl2br($deskripsi);
@@ -121,7 +132,16 @@ $totalRequests = mysqli_num_rows($q);
                                 <td class='table-child-admin'>$kegiatan</td>
                                 <td class='table-child-admin'>$convertedTanggal</td>
                                 <td class='table-child-admin'>$idWijk - $nama_wijk</td>
+                                <td class='table-child-admin'>$alamat</td>
                                 <td class='table-child-admin'>$convertedDeskripsi</td>
+                                <td class='table-child-admin'>
+                                <span class='choice-buttons'>
+                                    <a target='_blank' href='edit_activity.php?id=$id'><i class='fa-solid fa-file-pen fa-lg'></i></a>
+                                    <a href='delete_activity.php?id=$id' style='color:#f05151'>
+                                        <i class='fa-solid fa-trash fa-lg'></i>
+                                    </a>
+                                </span>
+                                </td>
                             </tr>";
 
                         $counter = $counter + 1;
@@ -133,7 +153,12 @@ $totalRequests = mysqli_num_rows($q);
         </div>
         </div>
     </section>
-
 </body>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
 
 </html>
