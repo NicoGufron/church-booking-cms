@@ -22,11 +22,14 @@
                 $sql = "SELECT * FROM accounts where username = '$username' and password = '$password';";
                 $q = mysqli_query($conn, $sql);
 
-                while($row = mysqli_fetch_assoc($q)) {
-                    $_SESSION["id"] = $row['id'];
-                    $_SESSION["id_wijk"] = $row['id_wijk'];
+                /// Jika query ada return sesuatu
+                if (mysqli_num_rows($q) >= 1) {
+                    while($row = mysqli_fetch_assoc($q)) {
+                        $_SESSION["id"] = $row['id'];
+                        $_SESSION["id_wijk"] = $row['id_wijk'];
+                    }
+                    $_SESSION['username'] = $username;
                 }
-                $_SESSION['username'] = $username;
 
                 $accountFound = mysqli_num_rows($q);
 

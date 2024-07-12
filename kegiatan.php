@@ -57,8 +57,6 @@ include("navbar.php");
                                     $idWijk = $activities['id_wijk'];
                                     $convertedDeskripsi = nl2br($deskripsi);
                                     $convertedTanggal = date('d M Y, H:i', strtotime($tanggalMulai)) . " WIB";
-
-                                    
                                     
                                     if ($idWijk == "1") {
                                         $namaWijk = "Sion";
@@ -77,10 +75,10 @@ include("navbar.php");
                                     }
                             
                                     echo "<tr>
-                                    <td class='table-child'>$kegiatan</td>
-                                    <td class='table-child'>$namaWijk</td>
-                                    <td class='table-child'>$convertedTanggal</td>
-                                    <td class='table-child'>$convertedDeskripsi</td>
+                                        <td class='table-child'>$kegiatan</td>
+                                        <td class='table-child'>$namaWijk</td>
+                                        <td class='table-child'>$convertedTanggal</td>
+                                        <td class='table-child'>$convertedDeskripsi</td>
                                     </tr>";
                                 }
                             ?>

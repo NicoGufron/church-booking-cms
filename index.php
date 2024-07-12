@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html>
-
 <head>
     <meta name="viewport" content="width= device-width, initial-scale=1" />
     <title>HKBP Ressort Jatimurni</title>
@@ -17,6 +16,9 @@
 </head>
 
 <?php
+if (isset($_SESSION)) {
+    session_start();
+}
 require_once("connect.php");
 include("navbar.php");
 ?>
@@ -72,8 +74,8 @@ include("navbar.php");
                 <p class="subtitle">Jadwal Kegiatan Daring / Online
                 <div class="table-responsive">
                     <table class="table-umum table-hover" style="margin-top: 20px">
-                        <thead >
-                            <tr >
+                        <thead>
+                            <tr>
                                 <th bgcolor="#5b0f00" style="color:white">Tanggal</th>
                                 <th bgcolor="#5b0f00" style="color:white">Kegiatan</th>
                                 <th bgcolor="#5b0f00" style="color:white">Keterangan</th>
@@ -122,17 +124,58 @@ include("navbar.php");
                 </div>
         </section>
 
-        <!-- <div class="maps">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.4961904600045!2d106.93415877499133!3d-6.32969439365987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6992e76c954885%3A0x2a74938e1af7e7e5!2sHKBP%20Ressort%20Jatimurni!5e0!3m2!1sen!2sid!4v1713943691465!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div> -->
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Selamat Datang!</h5>
+                    </div>
+                    <div class="modal-body">
+                        Untuk website dapat berfungsi secara baik, mohon untuk memilih peran anda sebelum melanjutkan.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn more-button" id="roleJemaat" data-dismiss="modal">Jemaat</button>
+                        <button type="button" class="btn more-button" id="roleNonJemaat" data-dismiss="modal">Non-Jemaat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <?php
         include("footer.php");
-
         ?>
 
     </div>
 </body>
+<script>
+    function showModal() {
+        <?php if (!isset($_SESSION['role'])) : ?>
+            $(function() {
+                $('#exampleModalCenter').modal({backdrop: 'static', keyboard: false});
+                $('#exampleModalCenter').modal('show');
+            });
+        <?php endif ?>
+
+        var pilihan;
+
+        var roleButtonJemaat = document.getElementById("roleJemaat");
+        roleButtonJemaat.onclick = function() {
+            <?php $_SESSION['role'] = "jemaat"; ?>
+            // pilihan = "jemaat";
+            $('#exampleModalCenter').modal("hide");
+        }
+
+        var roleButtonNonJemaat = document.getElementById("roleNonJemaat");
+        roleButtonNonJemaat.onclick = function() {
+            <?php $_SESSION['role'] = "nonjemaat"; ?>
+            // pilihan = "nonjemaat";
+            $('#exampleModalCenter').modal("hide");
+        }
+    }
+
+    window.onload = showModal();
+</script>
 
 </html>
