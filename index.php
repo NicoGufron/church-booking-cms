@@ -16,9 +16,6 @@
 </head>
 
 <?php
-if (isset($_SESSION)) {
-    session_start();
-}
 require_once("connect.php");
 include("navbar.php");
 ?>
@@ -135,8 +132,8 @@ include("navbar.php");
                         Untuk website dapat berfungsi secara baik, mohon untuk memilih peran anda sebelum melanjutkan.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn more-button" id="roleJemaat" data-dismiss="modal">Jemaat</button>
-                        <button type="button" class="btn more-button" id="roleNonJemaat" data-dismiss="modal">Non-Jemaat</button>
+                        <button type="button" class="btn more-button" id="roleJemaat">Jemaat</button>
+                        <button type="button" class="btn more-button" id="roleNonJemaat">Non-Jemaat</button>
                     </div>
                 </div>
             </div>
@@ -158,21 +155,30 @@ include("navbar.php");
             });
         <?php endif ?>
 
-        var pilihan;
-
         var roleButtonJemaat = document.getElementById("roleJemaat");
         roleButtonJemaat.onclick = function() {
-            <?php $_SESSION['role'] = "jemaat"; ?>
-            // pilihan = "jemaat";
-            $('#exampleModalCenter').modal("hide");
+            setRole("jemaat")
         }
 
         var roleButtonNonJemaat = document.getElementById("roleNonJemaat");
         roleButtonNonJemaat.onclick = function() {
-            <?php $_SESSION['role'] = "nonjemaat"; ?>
-            // pilihan = "nonjemaat";
-            $('#exampleModalCenter').modal("hide");
+            setRole("nonjemaat");
         }
+    }
+
+    function setRole(role) {
+        $.ajax({
+            type: 'POST',
+            url: 'set_session.php',
+            data: {role: role},
+            success: function(response) {
+                if (response === "success") {
+                    $("#exampleModalCenter").modal("hide");
+                } else {
+                    console.log("failed");
+                }
+            }
+        })
     }
 
     window.onload = showModal();
